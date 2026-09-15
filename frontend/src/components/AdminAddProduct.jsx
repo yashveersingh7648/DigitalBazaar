@@ -142,9 +142,19 @@ export default function AdminAddProduct() {
   };
 
   return (
-    <div className="page container form-wide">
+    <div className="page">
       <SEO title="Admin · Add Product" path="/admin" noindex />
-      <h2>Admin → {editingId ? "Edit Product" : "Add Product"}</h2>
+
+      <div className="admin-banner">
+        <div className="container">
+          <h2 style={{ color: "#fff", margin: 0 }}>{editingId ? "Edit product" : "Add a new product"}</h2>
+          <p style={{ color: "rgba(255,255,255,0.72)", margin: "4px 0 0" }}>
+            List items you fulfill yourself, or affiliate products from Flipkart and Meesho.
+          </p>
+        </div>
+      </div>
+
+      <div className="container form-wide">
 
       {editingId && (
         <div className="editing-banner">
@@ -304,6 +314,7 @@ export default function AdminAddProduct() {
           ))}
         </tbody>
       </table>
+      </div>
       </div>
     </div>
   );

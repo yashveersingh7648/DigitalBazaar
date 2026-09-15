@@ -68,23 +68,32 @@ export default function ProductList() {
         path="/"
       />
 
-      <div className="container">
-        <div className="hero">
-          <span className="hero-eyebrow">New arrivals every week</span>
-          <h1>Curated finds, honest prices</h1>
-          <p>
-            Some products are sourced and shipped by us directly. Others are handpicked
-            from trusted partners like Flipkart and Meesho. Every listing is clearly labelled so
-            you always know exactly what you're buying and from where.
-          </p>
+      <div className="hero-section">
+        <div className="container">
+          <div className="hero">
+            <span className="hero-blob-3" aria-hidden="true"></span>
+            <span className="hero-eyebrow">New arrivals every week</span>
+            <h1>Curated finds, honest prices</h1>
+            <p>
+              Some products are sourced and shipped by us directly. Others are handpicked
+              from trusted partners like Flipkart and Meesho. Every listing is clearly labelled so
+              you always know exactly what you're buying and from where.
+            </p>
+            <div className="hero-cta-row">
+              <a href="#shop-grid" className="btn btn-accent btn-pill">Shop now</a>
+              <a href="#category-bar" className="btn btn-outline-light btn-pill">Browse categories</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <TrustStrip />
 
-      <CategoryBar active={category} onSelect={setCategory} />
+      <div id="category-bar">
+        <CategoryBar active={category} onSelect={setCategory} />
+      </div>
 
-      <div className="container">
+      <div className="container" id="shop-grid">
         {loading && (
           <div className="product-grid">
             {[1, 2, 3, 4].map((i) => (

@@ -88,6 +88,13 @@ Wahi jo pehle bana tha — admin product add karta hai with source/selling price
 - Database → MongoDB Atlas
 - Deploy ke baad Google Cloud Console aur Flipkart Affiliate dono jagah apna live domain "authorized origin" me add karna mat bhoolna.
 
+## Design v6 — Light theme + animated gradient hero (latest)
+- **Switched from full dark theme to a light e-commerce base** (white pages, standard for shopping sites) while keeping the navy header/footer as dark bookends for strong navbar visibility.
+- **Full-bleed animated gradient-mesh hero** at the top of the homepage — navy base with moving cyan/blue/amber glows (contained to the hero only, not the whole site), inspired by dark-navy-plus-cyan corporate sites and gradient-hero SaaS pages, built with original colors/copy (no third-party assets used).
+- **Fixed: Log in button in the navbar** — it was rendering with the plain `.btn` class, which is the same color as the dark header background (invisible). It now uses `.btn-accent` (solid amber pill, persistent shadow, icon) so it's unmistakably a button.
+- **Motion added across every page**: page-level slide-up-and-fade on route change, staggered entrance for dashboard stat cards / cart items / contact rows / admin table rows, floating gradient orbs behind auth forms, and an animated gradient admin banner — all via pure CSS (`prefers-reduced-motion` respected).
+- **Contrast fix**: several text/icon colors (badges, trust icons, category chip hover, profile role tag) were tuned for a dark theme and read poorly on white — recolored to a darker teal for AA-safe contrast on light surfaces.
+
 ## Design, SEO & Responsiveness (v4)
 - **All content in English** — every page, label, and error message across frontend and backend.
 - **E-commerce patterns** inspired by common conventions seen on major Indian shopping platforms (category chips, trust badges, discount strikethrough pricing, wishlist icon) — implemented with original code, copy, and design tokens. No logos, images, text, or brand assets from any third-party site are used anywhere in this project.

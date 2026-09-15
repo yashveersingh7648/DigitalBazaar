@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User, LogIn } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 
@@ -72,7 +72,9 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link to="/login" className="btn btn-sm" onClick={closeMenu}>Log in</Link>
+            <Link to="/login" className="btn btn-accent btn-sm" onClick={closeMenu}>
+              <LogIn size={15} /> Log in
+            </Link>
           )}
         </nav>
       </div>
