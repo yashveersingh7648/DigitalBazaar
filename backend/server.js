@@ -1,3 +1,5 @@
+import "dotenv/config";   
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -14,13 +16,21 @@ import uploadRoutes from "./routes/upload.js";
 import settingsRoutes from "./routes/settings.js";
 import contactRoutes from "./routes/contact.js";
 
-dotenv.config();
+// dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+
+console.log("=== ENV CHECK ===");
+console.log("CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("API_KEY:", process.env.CLOUDINARY_API_KEY ? "LOADED" : "MISSING");
+console.log("API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "LOADED" : "MISSING");
+console.log("CWD:", process.cwd());
+console.log("=================");
 
 // Uploaded product images yahan se serve hoti hain: http://<host>/uploads/<filename>
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
