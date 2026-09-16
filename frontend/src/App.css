@@ -1222,3 +1222,42 @@ tbody tr:last-child td { border-bottom: none; }
 
 .trending-strip { padding: 8px 0 44px; }
 .trending-strip .product-grid { padding-top: 8px; }
+
+
+
+.desc-wrap {
+  position: relative;
+}
+
+.product-card .desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;         /* sirf 2 lines dikhao */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 6px 0 0;
+  color: var(--muted, #666);
+  font-size: 13px;
+  line-height: 1.4;
+  min-height: 2.8em;             /* card ki height consistent rahe */
+}
+
+.product-card .desc.expanded {
+  -webkit-line-clamp: unset;      /* expand hone par poora dikhao */
+  display: block;
+  overflow: visible;
+}
+
+.desc-toggle {
+  background: none;
+  border: none;
+  color: var(--accent, #2563eb);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 0;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.desc-toggle:hover {
+  text-decoration: underline;
+}

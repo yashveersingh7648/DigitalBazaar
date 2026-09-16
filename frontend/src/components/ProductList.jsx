@@ -23,6 +23,8 @@ export default function ProductList() {
   const { user } = useAuth();
   const { addToCart } = useCart();
 
+  const [expandedDesc, setExpandedDesc] = useState(new Set());
+
   useEffect(() => {
     api
       .get("/products")
@@ -91,7 +93,38 @@ export default function ProductList() {
         </span>
 
         <h3 style={{ fontSize: 16 }}>{p.name}</h3>
-        <p className="desc">{p.description}</p>
+        {/* <p className="desc">{p.description}</p> */}
+        {(() => {
+  const isExpanded = expandedDesc.has(p._id);
+  const descText = p.description || "";
+  const LIMIT = 90; // 2 lines ke aas paas
+  const needsToggle = descText.length > LIMIT;
+  const shown = isExpanded || !needsToggle
+    ? descText
+    : descText.slice(0, LIMIT).trim() + "...";
+
+  return (
+    <div className="desc-wrap">
+      <p className={`desc ${isExpanded ? "expanded" : ""}`}>{shown}</p>
+      {needsToggle && (
+        <button
+          type="button"
+          className="desc-toggle"
+          onClick={(e) => {
+            e.stopPropagation();
+            setExpandedDesc((prev) => {
+              const next = new Set(prev);
+              next.has(p._id) ? next.delete(p._id) : next.add(p._id);
+              return next;
+            });
+          }}
+        >
+          {isExpanded ? "Less" : "More"}
+        </button>
+      )}
+    </div>
+  );
+})()}
 
         <div className="price-row">
           <span className="price">₹{price}</span>
