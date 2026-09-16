@@ -4,7 +4,7 @@ import api, { resolveImageUrl } from "../api/api";
 import SEO from "./SEO";
 
 const CATEGORY_OPTIONS = ["Fashion", "Electronics", "Home & Living", "Beauty", "Footwear", "Accessories", "Kids"];
-const AFFILIATE_SOURCES = ["Flipkart", "Meesho"];
+const AFFILIATE_SOURCES = ["Flipkart", "Meesho", "Amazon", "Myntra", "Nykaa"];
 
 const emptyForm = {
   type: "reseller",
@@ -13,6 +13,7 @@ const emptyForm = {
   category: "",
   image: "",
   mrp: "",
+  featured: false,
   // reseller
   sourcePrice: "",
   sellingPrice: "",
@@ -76,6 +77,7 @@ export default function AdminAddProduct() {
       category: p.category || "",
       image: p.image || "",
       mrp: p.mrp ?? "",
+      featured: !!p.featured,
       sourcePrice: p.sourcePrice ?? "",
       sellingPrice: p.sellingPrice ?? "",
       supplierName: p.supplierName || "",
@@ -208,6 +210,17 @@ export default function AdminAddProduct() {
 
         <label>MRP (₹, optional — shows a strikethrough discount to customers)</label>
         <input className="form-input" type="number" name="mrp" value={form.mrp} onChange={handleChange} />
+
+        <label className="checkbox-row">
+          <input
+            type="checkbox"
+            checked={form.featured}
+            onChange={(e) => setForm({ ...form, featured: e.target.checked })}
+          />
+          Mark as Trending / Featured pick — you've checked this is genuinely doing well
+          (bestseller, high rating, high demand) on its source site or in your own sales,
+          and want it highlighted in the homepage "Trending picks" strip.
+        </label>
 
         {form.type === "reseller" ? (
           <>

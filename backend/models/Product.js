@@ -28,6 +28,7 @@ const productSchema = new mongoose.Schema(
     stock: { type: Number, default: 0 },
 
     isActive: { type: Boolean, default: true },
+    featured: { type: Boolean, default: false }, // admin-curated "Trending" pick — shown in the homepage highlight strip
   },
   { timestamps: true }
 );

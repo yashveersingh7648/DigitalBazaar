@@ -26,15 +26,21 @@ export default function Contact() {
   };
 
   return (
-    <div className="page container" style={{ maxWidth: 920 }}>
+    <div className="page">
       <SEO title="Contact Us" path="/contact" />
-      <div className="hero" style={{ maxWidth: "100%", padding: "60px 0 20px" }}>
-        <span className="hero-eyebrow">We usually reply within a day</span>
-        <h1 style={{ fontSize: "clamp(28px, 4vw, 38px)" }}>Get in touch</h1>
-        <p>Have a question about an order, a product, or a partnership idea? Send us a message.</p>
+
+      <div className="hero-section hero-section-sm">
+        <div className="container">
+          <div className="hero" style={{ maxWidth: "100%", padding: "56px 0 44px" }}>
+            <span className="hero-eyebrow">We usually reply within a day</span>
+            <h1 style={{ fontSize: "clamp(28px, 4vw, 38px)" }}>Get in touch</h1>
+            <p>Have a question about an order, a product, or a partnership idea? Send us a message.</p>
+          </div>
+        </div>
       </div>
 
-      <div className="contact-grid">
+      <div className="container" style={{ maxWidth: 920 }}>
+      <div className="contact-grid" style={{ marginTop: 40 }}>
         <form onSubmit={handleSubmit} className="form-card" style={{ margin: 0, maxWidth: "none" }}>
           <label>Your Name</label>
           <input className="form-input" name="name" value={form.name} onChange={handleChange} required />
@@ -74,6 +80,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -4,23 +4,29 @@ import { protect, adminOnly } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// Sirf ye affiliate partners supported hain abhi — inke domains ke against link check hota hai
+// Supported affiliate partners — verified each has a real, official affiliate program
+// as of 2026 (Flipkart Affiliate, Meesho Creator Club, Amazon Associates India, Myntra
+// Affiliate Feature, Nykaa Affiliate Program). Links are checked against these domains.
 const AFFILIATE_DOMAINS = {
   flipkart: ["flipkart.com", "fkrt.it", "fkrt.co"],
   meesho: ["meesho.com"],
+  amazon: ["amazon.in", "amzn.to", "amzn.in"],
+  myntra: ["myntra.com"],
+  nykaa: ["nykaa.com"],
 };
 
-// Affiliate product ki basic sanity check: source Flipkart/Meesho ho, aur link usi ke domain ka ho.
+// Affiliate product ki basic sanity check: source ek supported partner ho, aur link usi ke domain ka ho.
 // NOTE: Ye sirf link-domain match karta hai — ye guarantee nahi de sakta ki wahi exact
-// product/category Flipkart ya Meesho par bhi available hai, kyunki uske liye unke
+// product/category us partner par bhi available hai, kyunki uske liye unke
 // official Product Search API + approved affiliate credentials chahiye hote hain.
 const validateAffiliate = (body) => {
   if (body.type !== "affiliate") return null;
   if (!body.category) return "Category zaroori hai, taaki hum sahi partner category se match kar sakein";
 
   const source = (body.affiliateSource || "").trim().toLowerCase();
-  if (!["flipkart", "meesho"].includes(source)) {
-    return "Affiliate Source sirf 'Flipkart' ya 'Meesho' me se ek hona chahiye";
+  const supported = Object.keys(AFFILIATE_DOMAINS);
+  if (!supported.includes(source)) {
+    return `Affiliate Source sirf ${supported.map((s) => s[0].toUpperCase() + s.slice(1)).join(", ")} me se ek hona chahiye`;
   }
 
   const link = (body.affiliateLink || "").trim().toLowerCase();

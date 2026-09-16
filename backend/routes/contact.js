@@ -1,7 +1,7 @@
 import express from "express";
 import ContactMessage from "../models/ContactMessage.js";
 import { protect, adminOnly } from "../middleware/auth.js";
-import { getTransporter } from "../utils/mailer.js";
+import { getMailer } from "../utils/mailer.js";
 
 const router = express.Router();
 
@@ -18,13 +18,13 @@ router.post("/", async (req, res) => {
 
     const saved = await ContactMessage.create({ name, email, phone, message });
 
-    // Email bhejne ki koshish karo — agar EMAIL_USER/EMAIL_PASS set nahi hai to
-    // ye chup-chaap skip ho jaayega, lekin query DB me save ho hi chuki hai.
-    const transporter = getTransporter();
-    if (transporter) {
+    // Email bhejne ki koshish karo (SendGrid pehle, warna Gmail) — agar dono me se kuch bhi
+    // set nahi hai to ye chup-chaap skip ho jaayega, lekin query DB me save ho hi chuki hai.
+    const mailer = getMailer();
+    if (mailer) {
       try {
-        await transporter.sendMail({
-          from: `"${name} (via website)" <${process.env.EMAIL_USER}>`,
+        await mailer.transporter.sendMail({
+          from: `"${name} (via website)" <${mailer.from}>`,
           to: CONTACT_EMAIL,
           replyTo: email,
           subject: `New contact query from ${name}`,
