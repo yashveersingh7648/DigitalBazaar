@@ -6,12 +6,19 @@ export default function Dashboard() {
   const [data, setData] = useState(null);
   const [orders, setOrders] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [analytics, setAnalytics] = useState(null);
 
   const fetchData = async () => {
-    const [d, o, m] = await Promise.all([api.get("/dashboard"), api.get("/orders"), api.get("/contact")]);
+    const [d, o, m, a] = await Promise.all([
+      api.get("/dashboard"),
+      api.get("/orders"),
+      api.get("/contact"),
+      api.get("/analytics/summary"),
+    ]);
     setData(d.data);
     setOrders(o.data);
     setMessages(m.data);
+    setAnalytics(a.data);
   };
 
   useEffect(() => {
@@ -34,7 +41,41 @@ export default function Dashboard() {
   return (
     <div className="page container">
       <SEO title="Dashboard" path="/dashboard" noindex />
-      <h2 style={{ marginTop: 32 }}>Reseller Business</h2>
+
+      {analytics && (
+        <>
+          <h2 style={{ marginTop: 32 }}>Site Visitors</h2>
+          <div className="stat-row">
+            <Stat label="Total Visitors" value={analytics.totalVisitors} highlight />
+            <Stat label="Active Last 24h" value={analytics.last24h} />
+            <Stat label="Active Last 7 Days" value={analytics.last7d} />
+            <Stat label="Avg. Time on Site" value={formatDuration(analytics.avgSeconds)} accent />
+            <Stat label="Total Pageviews" value={analytics.totalPageviews} />
+          </div>
+          {analytics.recentSessions.length > 0 && (
+            <div className="table-wrap" style={{ marginBottom: 32 }}>
+              <table>
+                <thead>
+                  <tr><th>Visitor</th><th>Pages Viewed</th><th>Time on Site</th><th>Last Page</th><th>Last Active</th></tr>
+                </thead>
+                <tbody>
+                  {analytics.recentSessions.map((s) => (
+                    <tr key={s.sessionId}>
+                      <td>{s.sessionId}…</td>
+                      <td>{s.pageCount}</td>
+                      <td>{formatDuration(s.durationSeconds)}</td>
+                      <td>{s.lastPath}</td>
+                      <td>{new Date(s.lastSeen).toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
+      )}
+
+      <h2>Reseller Business</h2>
       <div className="stat-row">
         <Stat label="Total Orders" value={reseller.totalOrders} />
         <Stat label="Total Sales" value={`₹${reseller.totalSales}`} />
@@ -139,6 +180,13 @@ export default function Dashboard() {
       )}
     </div>
   );
+}
+
+function formatDuration(seconds) {
+  if (!seconds || seconds < 60) return `${seconds || 0}s`;
+  const mins = Math.floor(seconds / 60);
+  if (mins < 60) return `${mins}m ${seconds % 60}s`;
+  return `${Math.floor(mins / 60)}h ${mins % 60}m`;
 }
 
 function Stat({ label, value, highlight, accent }) {

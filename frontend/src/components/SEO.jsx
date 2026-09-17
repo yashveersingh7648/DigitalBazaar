@@ -6,7 +6,7 @@ export default function SEO({ title, description, path = "/", noindex = false })
   const desc =
     description ||
     "Shop curated products sourced directly by us, or find trusted picks from partner stores — all in one place.";
-  const url = `https://www.yourdomain.com${path}`;
+  const url = `https://market-vtbx.onrender.com${path}`;
 
   return (
     <Helmet>

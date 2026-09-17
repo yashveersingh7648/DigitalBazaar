@@ -43,15 +43,6 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 
-console.log("Cloudinary Cloud Name:", process.env.CLOUDINARY_CLOUD_NAME);
-console.log(
-  "Cloudinary API Key Loaded:",
-  Boolean(process.env.CLOUDINARY_API_KEY)
-);
-console.log(
-  "Cloudinary API Secret Loaded:",
-  Boolean(process.env.CLOUDINARY_API_SECRET)
-);
 
 
 cloudinary.config({

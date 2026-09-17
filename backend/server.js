@@ -1,9 +1,9 @@
-import "dotenv/config";   
+import "dotenv/config";
 
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
+import compression from "compression";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -15,24 +15,18 @@ import cartRoutes from "./routes/cart.js";
 import uploadRoutes from "./routes/upload.js";
 import settingsRoutes from "./routes/settings.js";
 import contactRoutes from "./routes/contact.js";
-
-// dotenv.config();
+import analyticsRoutes from "./routes/analytics.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors());
+app.use(compression()); // responses ko gzip karta hai — page load fast karta hai
 app.use(express.json());
 
-
-console.log("=== ENV CHECK ===");
-console.log("CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
-console.log("API_KEY:", process.env.CLOUDINARY_API_KEY ? "LOADED" : "MISSING");
-console.log("API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "LOADED" : "MISSING");
-console.log("CWD:", process.cwd());
-console.log("=================");
-
 // Uploaded product images yahan se serve hoti hain: http://<host>/uploads/<filename>
+// (Ab Cloudinary use ho raha hai to naye uploads seedhe Cloudinary URL return karte hain —
+// ye sirf bahut purani, disk par save hui images ke liye backward-compatible rakha gaya hai)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/auth", authRoutes);
@@ -43,6 +37,7 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.get("/", (req, res) => res.send("Reseller + Affiliate Platform API running"));
 

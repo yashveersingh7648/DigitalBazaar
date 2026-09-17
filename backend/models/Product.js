@@ -33,6 +33,9 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+productSchema.index({ isActive: 1, createdAt: -1 });
+productSchema.index({ category: 1 });
+
 productSchema.virtual("margin").get(function () {
   if (this.type !== "reseller") return null;
   return (this.sellingPrice || 0) - (this.sourcePrice || 0);

@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 import { OAuth2Client } from "google-auth-library";
 import User from "../models/User.js";
 import { protect } from "../middleware/auth.js";
@@ -25,12 +26,30 @@ const resolveRole = (email) =>
     ? "admin"
     : "customer";
 
+const isAdminEmail = (email) =>
+  !!process.env.ADMIN_EMAIL && email?.toLowerCase() === process.env.ADMIN_EMAIL.toLowerCase();
+
+// Constant-time string compare — taaki password check timing se guess na ho sake
+const safeEqual = (a, b) => {
+  if (!a || !b) return false;
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+};
+
 // POST /api/auth/register
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
       return res.status(400).json({ error: "Name, email and password are required" });
+    }
+
+    // Admin ka email reserved hai — isse koi bhi normal signup se register nahi kar sakta,
+    // warna email ke public hone (Contact page) par koi bhi wahi email use karke admin ban sakta tha
+    if (isAdminEmail(email)) {
+      return res.status(400).json({ error: "This email is reserved for the site admin. Please log in instead." });
     }
 
     const existing = await User.findOne({ email: email.toLowerCase() });
@@ -40,7 +59,7 @@ router.post("/register", async (req, res) => {
       name,
       email: email.toLowerCase(),
       password,
-      role: resolveRole(email),
+      role: "customer",
     });
 
     res.status(201).json({ token: signToken(user), user: publicUser(user) });
@@ -53,6 +72,23 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // Admin login: password hamesha process.env.ADMIN_PASSWORD se match hota hai —
+    // isse aap sirf .env edit karke admin password rotate kar sakte ho, DB chhue bina
+    if (isAdminEmail(email)) {
+      if (!process.env.ADMIN_PASSWORD || !safeEqual(password || "", process.env.ADMIN_PASSWORD)) {
+        return res.status(401).json({ error: "Incorrect email or password" });
+      }
+      let admin = await User.findOne({ email: email.toLowerCase() });
+      if (!admin) {
+        admin = await User.create({ name: "Admin", email: email.toLowerCase(), role: "admin" });
+      } else if (admin.role !== "admin") {
+        admin.role = "admin";
+        await admin.save();
+      }
+      return res.json({ token: signToken(admin), user: publicUser(admin) });
+    }
+
     const user = await User.findOne({ email: email?.toLowerCase() });
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ error: "Incorrect email or password" });

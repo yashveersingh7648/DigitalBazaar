@@ -1,8 +1,4 @@
 # Environment Files
-# Ek hi command mein sab add karo:
-cat >> .gitignore << 'EOF'
-
-# Environment Files
 .env
 .env.local
 .env.development
@@ -41,4 +37,3 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
-EOF

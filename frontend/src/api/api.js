@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+export { API_URL };
 // API_URL me "/api" suffix hota hai — uploaded images "/uploads/..." isi server ke origin se aati hain
 export const SERVER_ORIGIN = API_URL.replace(/\/api\/?$/, "");
 

@@ -42,8 +42,13 @@ const validateAffiliate = (body) => {
 router.get("/", async (req, res) => {
   try {
     const filter = req.query.admin === "true" ? {} : { isActive: true };
-    const products = await Product.find(filter).sort({ createdAt: -1 });
-    res.json(products);
+    const products = await Product.find(filter).sort({ createdAt: -1 }).lean();
+    // .lean() se Mongoose virtuals (jaise "margin") nahi aate — isliye yahan khud add kar rahe hain
+    const withMargin = products.map((p) => ({
+      ...p,
+      margin: p.type === "reseller" ? (p.sellingPrice || 0) - (p.sourcePrice || 0) : null,
+    }));
+    res.json(withMargin);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

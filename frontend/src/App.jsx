@@ -13,6 +13,9 @@ import Profile from "./components/Profile";
 import AdminAddProduct from "./components/AdminAddProduct";
 import AdminSettings from "./components/AdminSettings";
 import Contact from "./components/Contact";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsAndConditions from "./components/TermsAndConditions";
+import VisitTracker from "./components/VisitTracker";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -29,11 +32,14 @@ export default function App() {
         <AuthProvider>
           <CartProvider>
             <BrowserRouter>
+              <VisitTracker />
               <Header />
               <main>
                 <Routes>
                   <Route path="/" element={<ProductList />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsAndConditions />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route
