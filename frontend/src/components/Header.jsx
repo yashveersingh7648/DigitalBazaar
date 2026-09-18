@@ -38,7 +38,9 @@ export default function Header() {
       <div className="container">
         <Link to="/" className="brand" onClick={closeMenu}>
           <img src="/logo.png" alt="Bazaar logo" />
-          Baz<span>aar</span>
+          {/* Baz<span>aar</span> */}
+          Digital<span>Bazaar</span>
+
         </Link>
 
         <button

@@ -1,37 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Brand colors — "Northline" theme v2: light e-commerce base, deep navy header/footer bookends,
-     teal-cyan primary (readable on white), electric cyan reserved for dark surfaces/gradients,
-     warm amber secondary for prices and sale badges. Inspired by: navy+cyan corporate sites,
-     soft organic circle motifs, and animated gradient-mesh hero sections. */
-  --navy: #0a121f;        /* near-black navy — header/footer/dark surfaces + modals */
-  --navy-2: #142236;      /* hover state on dark surfaces */
-  --blue: #0e7fa3;        /* deep teal-cyan — primary text/icon/button color, AA-safe on white */
-  --blue-bright: #22d3ee; /* electric cyan — dark-surface hover, gradients, glow effects only */
-  --blue-soft: rgba(14, 127, 163, 0.10);
-  --navy-soft: rgba(234, 88, 12, 0.10);
-  --gold: #ea580c;        /* warm amber/orange accent — prices, sale badges */
-  --gold-bright: #fb923c;
-  --pink: #38bdf8;        /* tertiary gradient accent (sky blue) */
+  /* Brand colors — "Ginny" theme: near-black dark surfaces (header/footer/hero) with a
+     teal/emerald glow accent + warm coral CTA, inspired by a dark automotive-AI reference design.
+     Rest of the site (product grid, cards, forms) stays on a clean light base for e-commerce readability. */
+  --navy: #05090a;        /* near-true-black — header/footer/dark surfaces + modals */
+  --navy-2: #0d1a18;      /* hover state on dark surfaces */
+  --blue: #14766d;        /* deep teal — primary text/icon/button color, AA-safe on white */
+  --blue-bright: #4fc3b6; /* bright teal/emerald — dark-surface hover, glow effects, gradients */
+  --blue-soft: rgba(20, 118, 109, 0.10);
+  --navy-soft: rgba(201, 122, 74, 0.10);
+  --gold: #c97a4a;        /* warm coral/terracotta accent — CTA buttons, prices, sale badges */
+  --gold-bright: #e8a97d;
+  --pink: #4fc3b6;        /* tertiary gradient accent (mirrors bright teal) */
 
   --bg: #ffffff;          /* page base — light */
-  --bg-alt: #f4f7fa;
+  --bg-alt: #f4f7f6;
   --paper: #ffffff;       /* cards, forms, panels */
-  --paper-alt: #eef2f6;   /* slightly higher elevation / hover rows */
-  --ink: #0e1a2b;         /* primary text — dark navy on this light theme */
-  --ink-soft: #48586c;
-  --muted: #71829a;
-  --border: #e1e7ee;
+  --paper-alt: #eef3f2;   /* slightly higher elevation / hover rows */
+  --ink: #0d1917;         /* primary text — near-black on this light theme */
+  --ink-soft: #48605c;
+  --muted: #71847f;
+  --border: #e1e9e7;
   --danger: #dc2626;
   --success: #15803d;
 
   --radius: 10px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(14, 26, 43, 0.06);
-  --shadow-md: 0 8px 24px rgba(14, 26, 43, 0.10);
-  --shadow-lg: 0 20px 48px rgba(14, 26, 43, 0.18);
-  --glow: 0 0 0 1px rgba(14, 127, 163, 0.3), 0 8px 24px rgba(14, 127, 163, 0.18);
+  --shadow-sm: 0 1px 2px rgba(5, 20, 18, 0.06);
+  --shadow-md: 0 8px 24px rgba(5, 20, 18, 0.10);
+  --shadow-lg: 0 20px 48px rgba(5, 20, 18, 0.18);
+  --glow: 0 0 0 1px rgba(20, 118, 109, 0.3), 0 8px 24px rgba(20, 118, 109, 0.18);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -41,8 +40,8 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background:
-    radial-gradient(900px 500px at 12% -10%, rgba(34, 211, 238, 0.18), transparent 60%),
-    radial-gradient(700px 480px at 100% 10%, rgba(56, 189, 248, 0.14), transparent 55%),
+    radial-gradient(900px 500px at 12% -10%, rgba(79, 195, 182, 0.18), transparent 60%),
+    radial-gradient(700px 480px at 100% 10%, rgba(125, 216, 204, 0.14), transparent 55%),
     radial-gradient(800px 500px at 50% 110%, rgba(251, 146, 60, 0.10), transparent 60%),
     var(--bg);
   background-size: 200% 200%, 200% 200%, 200% 200%, auto;
@@ -178,8 +177,8 @@ img { max-width: 100%; display: block; }
 
 .hero-section-sm {
   background:
-    radial-gradient(80% 160% at 15% -10%, rgba(34, 211, 238, 0.35), transparent 60%),
-    radial-gradient(70% 140% at 90% 0%, rgba(56, 189, 248, 0.28), transparent 55%),
+    radial-gradient(80% 160% at 15% -10%, rgba(79, 195, 182, 0.35), transparent 60%),
+    radial-gradient(70% 140% at 90% 0%, rgba(125, 216, 204, 0.28), transparent 55%),
     linear-gradient(160deg, #0a121f 0%, #0e1f33 55%, #0a1626 100%) !important;
   background-size: 180% 180%, 180% 180%, auto !important;
 }
@@ -217,25 +216,25 @@ img { max-width: 100%; display: block; }
 .site-header .btn-outline:hover:not(:disabled) { background: rgba(255, 255, 255, 0.12); border-color: #ffffff; }
 .site-header .btn { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, var(--shadow-sm); }
 
-.btn-accent { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border-color: var(--gold); color: #2b1404; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35); animation: pulseGlow 2.6s ease-in-out infinite; }
-.btn-accent:hover:not(:disabled) { background: linear-gradient(180deg, #f0d585, var(--gold-bright)); border-color: var(--gold-bright); animation: none; }
+.btn-accent { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border-color: var(--gold); color: #2b1404; box-shadow: 0 2px 8px rgba(201, 122, 74, 0.35); animation: pulseGlow 2.6s ease-in-out infinite; }
+.btn-accent:hover:not(:disabled) { background: linear-gradient(180deg, #f0c9a8, var(--gold-bright)); border-color: var(--gold-bright); animation: none; }
 
 /* Clean solid brand-teal button — for account actions (Log in, Sign up) where a
    pulsing sale-orange CTA would feel gimmicky rather than professional. */
 .btn-primary {
-  background: linear-gradient(120deg, #14a8d1, var(--blue), #fb923c);
+  background: linear-gradient(120deg, #2f8f87, var(--blue), #e8a97d);
   background-size: 220% 100%;
   animation: btnGradientShift 3.5s ease-in-out infinite;
   border-color: var(--blue);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(14, 127, 163, 0.35);
+  box-shadow: 0 2px 8px rgba(20, 118, 109, 0.35);
 }
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(120deg, #1cc2ef, #14a8d1, #1cc2ef);
+  background: linear-gradient(120deg, #6ed4ca, #2f8f87, #6ed4ca);
   background-size: 220% 100%;
-  border-color: #14a8d1;
+  border-color: #2f8f87;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(14, 127, 163, 0.45);
+  box-shadow: 0 4px 14px rgba(20, 118, 109, 0.45);
 }
 @keyframes btnGradientShift {
   0%, 100% { background-position: 0% 0; }
@@ -243,8 +242,8 @@ img { max-width: 100%; display: block; }
 }
 .site-header .btn-primary { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 2px 10px rgba(0, 0, 0, 0.35); }
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(240, 180, 41, 0.35); }
-  50% { box-shadow: 0 0 0 7px rgba(240, 180, 41, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 122, 74, 0.35); }
+  50% { box-shadow: 0 0 0 7px rgba(201, 122, 74, 0); }
 }
 .btn-danger { background: linear-gradient(180deg, #f6766e, #d8483f); border-color: #d8483f; color: #fff; }
 .btn-danger:hover:not(:disabled) { background: linear-gradient(180deg, #ff8a82, #f6766e); }
@@ -256,11 +255,11 @@ img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(80% 120% at 15% -10%, rgba(34, 211, 238, 0.35), transparent 60%),
-    radial-gradient(70% 100% at 90% 0%, rgba(56, 189, 248, 0.28), transparent 55%),
-    radial-gradient(90% 80% at 50% 120%, rgba(234, 88, 12, 0.18), transparent 60%),
-    linear-gradient(160deg, #0a121f 0%, #0e1f33 55%, #0a1626 100%);
-  background-size: 180% 180%, 180% 180%, 180% 180%, auto;
+    radial-gradient(60% 90% at 88% -5%, rgba(79, 195, 182, 0.4), transparent 60%),
+    radial-gradient(45% 70% at 60% 15%, rgba(79, 195, 182, 0.16), transparent 65%),
+    radial-gradient(50% 60% at 15% 105%, rgba(201, 122, 74, 0.12), transparent 60%),
+    linear-gradient(160deg, #05090a 0%, #071312 55%, #05090a 100%);
+  background-size: 160% 160%, 160% 160%, 160% 160%, auto;
   animation: auroraShift 18s ease-in-out infinite alternate;
 }
 .hero {
@@ -278,7 +277,7 @@ img { max-width: 100%; display: block; }
 }
 .hero::before {
   width: 300px; height: 300px;
-  background: rgba(34, 211, 238, 0.28);
+  background: rgba(79, 195, 182, 0.28);
   top: -80px; right: -140px;
 }
 .hero::after {
@@ -292,8 +291,8 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   font-weight: 600;
   color: #a5f3fc;
-  background: rgba(34, 211, 238, 0.14);
-  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(79, 195, 182, 0.14);
+  border: 1px solid rgba(79, 195, 182, 0.35);
   padding: 5px 12px;
   border-radius: 20px;
   margin-bottom: 18px;
@@ -307,7 +306,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.12;
   opacity: 0;
   animation: rise 0.7s var(--ease) 0.08s forwards;
-  background: linear-gradient(120deg, #ffffff 40%, #67e8f9);
+  background: linear-gradient(120deg, #ffffff 40%, #7dd8cc);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -343,10 +342,13 @@ img { max-width: 100%; display: block; }
 .hero-showcase-card {
   position: absolute;
   width: 168px;
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(13, 32, 30, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(79, 195, 182, 0.28);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(79, 195, 182, 0.08) inset;
   opacity: 0;
   animation: cardIn 0.6s var(--ease) forwards, cardFloat 6s ease-in-out infinite;
 }
@@ -360,12 +362,12 @@ img { max-width: 100%; display: block; }
 .hero-showcase-meta { display: flex; flex-direction: column; gap: 2px; }
 .hero-showcase-meta span {
   font-size: 11.5px;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.55);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.hero-showcase-meta strong { font-size: 15px; color: var(--ink); }
+.hero-showcase-meta strong { font-size: 15px; color: #f3f6f5; }
 
 .card-0 { top: 4%; left: 8%; transform: rotate(-6deg); animation-delay: 0.1s, 0.7s; z-index: 3; }
 .card-1 { top: 34%; right: 0%; transform: rotate(4deg); animation-delay: 0.25s, 1s; z-index: 2; }
@@ -423,7 +425,7 @@ img { max-width: 100%; display: block; }
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--glow);
-  border-color: rgba(34, 211, 238, 0.4);
+  border-color: rgba(79, 195, 182, 0.4);
 }
 .product-card .img-wrap {
   width: 100%;
@@ -448,7 +450,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
-.badge-affiliate { background: var(--blue-soft); color: var(--blue); border: 1px solid rgba(34, 211, 238, 0.35); }
+.badge-affiliate { background: var(--blue-soft); color: var(--blue); border: 1px solid rgba(79, 195, 182, 0.35); }
 .badge-reseller { background: var(--navy-soft); color: var(--gold-bright); border: 1px solid rgba(251, 146, 60, 0.35); }
 
 .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
@@ -489,7 +491,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   width: 180px; height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.16), transparent 70%);
+  background: radial-gradient(circle, rgba(79, 195, 182, 0.16), transparent 70%);
   top: -60px; right: -60px;
   z-index: 0;
   filter: blur(20px);
@@ -649,7 +651,7 @@ tbody tr:last-child td { border-bottom: none; }
 .footer-brand img { height: 30px; width: 30px; border-radius: 50%; }
 .footer-brand span { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: #fff; }
 .footer-grid h4 { font-size: 13px; margin-bottom: 12px; color: #ffffff; }
-.footer-grid p, .footer-grid a { font-size: 13px; color: rgba(255, 255, 255, 0.836); text-decoration: none; line-height: 2; }
+.footer-grid p, .footer-grid a { font-size: 13px; color: rgba(255, 255, 255, 0.62); text-decoration: none; line-height: 2; }
 .footer-grid a:hover { color: var(--blue-bright); }
 .footer-bottom {
   margin-top: 32px;
@@ -993,7 +995,7 @@ tbody tr:last-child td { border-bottom: none; }
   align-items: center;
   justify-content: space-between;
   background: var(--blue-soft);
-  border: 1px solid rgba(14, 127, 163, 0.35);
+  border: 1px solid rgba(20, 118, 109, 0.35);
   color: var(--blue);
   padding: 10px 16px;
   border-radius: var(--radius);
@@ -1184,12 +1186,12 @@ tbody tr:last-child td { border-bottom: none; }
 }
 .page:has(.form-card)::before {
   width: 320px; height: 320px;
-  background: rgba(14, 127, 163, 0.12);
+  background: rgba(20, 118, 109, 0.12);
   top: 8%; left: -8%;
 }
 .page:has(.form-card)::after {
   width: 260px; height: 260px;
-  background: rgba(234, 88, 12, 0.10);
+  background: rgba(201, 122, 74, 0.10);
   bottom: 4%; right: -6%;
   animation-delay: -4s;
 }
@@ -1197,8 +1199,8 @@ tbody tr:last-child td { border-bottom: none; }
 /* Admin banner: soft moving gradient instead of a flat block */
 .admin-banner {
   background:
-    radial-gradient(60% 140% at 10% 0%, rgba(34, 211, 238, 0.35), transparent 60%),
-    radial-gradient(60% 140% at 90% 100%, rgba(234, 88, 12, 0.22), transparent 60%),
+    radial-gradient(60% 140% at 10% 0%, rgba(79, 195, 182, 0.35), transparent 60%),
+    radial-gradient(60% 140% at 90% 100%, rgba(201, 122, 74, 0.22), transparent 60%),
     linear-gradient(160deg, #0a121f, #0e1f33);
   background-size: 200% 200%, 200% 200%, auto;
   animation: auroraShift 16s ease-in-out infinite alternate;
@@ -1241,7 +1243,7 @@ tbody tr:last-child td { border-bottom: none; }
   display: flex;
   align-items: center;
   gap: 4px;
-  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.4);
+  box-shadow: 0 2px 8px rgba(201, 122, 74, 0.4);
   z-index: 2;
 }
 

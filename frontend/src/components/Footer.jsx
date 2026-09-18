@@ -18,7 +18,8 @@ export default function Footer() {
           <div>
             <div className="footer-brand">
               <img src="/logo.png" alt="Bazaar logo" />
-              <span>Bazaar</span>
+              <span>Digital
+Bazaar</span>
             </div>
             <p style={{ maxWidth: 280 }}>
               Some products are sourced and shipped by us directly. Others come
