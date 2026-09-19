@@ -9,6 +9,7 @@ import CategoryBar from "./CategoryBar";
 import TrustStrip from "./TrustStrip";
 import Reveal from "./Reveal";
 import ImageLightbox from "./ImageLightbox";
+import BagIllustration from "./BagIllustration";
 import AffiliateRedirect from "./AffiliateRedirect";
 
 export default function ProductList() {
@@ -70,11 +71,13 @@ export default function ProductList() {
     const discountPct = hasDiscount ? Math.round(((p.mrp - price) / p.mrp) * 100) : 0;
     const isWishlisted = wishlist.has(p._id);
     const imgSrc = resolveImageUrl(p.image);
+    const gallery = (p.images && p.images.length > 0 ? p.images : [p.image]).filter(Boolean).map(resolveImageUrl);
 
     return (
       <Reveal key={p._id} delay={(i % 4) * 60} className="product-card">
-        <div className="img-wrap" onClick={() => imgSrc && setLightboxImg({ src: imgSrc, alt: p.name })}>
+        <div className="img-wrap" onClick={() => imgSrc && setLightboxImg({ images: gallery, alt: p.name })}>
           {imgSrc && <img src={imgSrc} alt={p.name} loading="lazy" />}
+          {gallery.length > 1 && <span className="image-count-badge">1/{gallery.length}</span>}
           {showTrendingBadge && (
             <span className="trending-badge">🔥 Trending</span>
           )}
@@ -187,6 +190,7 @@ export default function ProductList() {
 
             {!loading && products.length > 0 && (
               <div className="hero-showcase" aria-hidden="true">
+                <BagIllustration />
                 {products.slice(0, 3).map((p, i) => {
                   const src = resolveImageUrl(p.image);
                   const price = p.type === "affiliate" ? p.displayPrice : p.sellingPrice;
@@ -251,7 +255,7 @@ export default function ProductList() {
       </div>
 
       {lightboxImg && (
-        <ImageLightbox src={lightboxImg.src} alt={lightboxImg.alt} onClose={() => setLightboxImg(null)} />
+        <ImageLightbox images={lightboxImg.images} alt={lightboxImg.alt} onClose={() => setLightboxImg(null)} />
       )}
       {redirecting && (
         <AffiliateRedirect product={redirecting} onDone={() => setRedirecting(null)} />

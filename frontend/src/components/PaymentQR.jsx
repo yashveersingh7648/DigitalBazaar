@@ -69,7 +69,7 @@ export default function PaymentQR({ amount, method, setMethod, transactionId, se
       )}
 
       {zoomed && qrSrc && (
-        <ImageLightbox src={qrSrc} alt="Payment QR code" onClose={() => setZoomed(false)} />
+        <ImageLightbox images={[qrSrc]} alt="Payment QR code" onClose={() => setZoomed(false)} />
       )}
     </div>
   );

@@ -12,6 +12,7 @@ const emptyForm = {
   description: "",
   category: "",
   image: "",
+  images: [],
   mrp: "",
   featured: false,
   // reseller
@@ -32,10 +33,14 @@ export default function AdminAddProduct() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
   const [editingId, setEditingId] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState("");
+  const [existingImages, setExistingImages] = useState([]); // already-uploaded URLs (edit mode)
+  const [newImageFiles, setNewImageFiles] = useState([]); // freshly chosen files, not uploaded yet
+  const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
+
+  const MAX_IMAGES = 6;
+  const totalImageCount = existingImages.length + newImageFiles.length;
 
   const fetchProducts = async () => {
     const res = await api.get("/products?admin=true");
@@ -54,17 +59,29 @@ export default function AdminAddProduct() {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleFileChange = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setImageFile(file);
-    setImagePreview(URL.createObjectURL(file));
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    const room = MAX_IMAGES - totalImageCount;
+    const accepted = files.slice(0, room);
+    setNewImageFiles((prev) => [...prev, ...accepted]);
+    setNewImagePreviews((prev) => [...prev, ...accepted.map((f) => URL.createObjectURL(f))]);
+    e.target.value = ""; // same file dobara select karne de
+  };
+
+  const removeExistingImage = (idx) => {
+    setExistingImages((prev) => prev.filter((_, i) => i !== idx));
+  };
+  const removeNewImage = (idx) => {
+    setNewImageFiles((prev) => prev.filter((_, i) => i !== idx));
+    setNewImagePreviews((prev) => prev.filter((_, i) => i !== idx));
   };
 
   const resetForm = () => {
     setForm(emptyForm);
     setEditingId(null);
-    setImageFile(null);
-    setImagePreview("");
+    setExistingImages([]);
+    setNewImageFiles([]);
+    setNewImagePreviews([]);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -76,6 +93,7 @@ export default function AdminAddProduct() {
       description: p.description || "",
       category: p.category || "",
       image: p.image || "",
+      images: p.images || [],
       mrp: p.mrp ?? "",
       featured: !!p.featured,
       sourcePrice: p.sourcePrice ?? "",
@@ -88,8 +106,11 @@ export default function AdminAddProduct() {
       displayPrice: p.displayPrice ?? "",
       commissionNote: p.commissionNote || "",
     });
-    setImageFile(null);
-    setImagePreview(p.image ? resolveImageUrl(p.image) : "");
+    // Purane products me sirf "image" ho sakta hai (images array nahi) — dono handle karo
+    const gallery = p.images && p.images.length > 0 ? p.images : p.image ? [p.image] : [];
+    setExistingImages(gallery);
+    setNewImageFiles([]);
+    setNewImagePreviews([]);
     setMessage("");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -98,21 +119,27 @@ export default function AdminAddProduct() {
     e.preventDefault();
     setMessage("");
     try {
-      let imagePath = form.image;
+      let uploadedUrls = [];
 
-      // Agar nayi file choose ki hai to pehle usse upload karo, fir uska returned path use karo
-      if (imageFile) {
+      // Nayi choose ki hui files ko ek saath upload karo (max 6 total)
+      if (newImageFiles.length > 0) {
         setUploading(true);
         const fd = new FormData();
-        fd.append("image", imageFile);
-        const uploadRes = await api.post("/upload", fd, {
+        newImageFiles.forEach((f) => fd.append("images", f));
+        const uploadRes = await api.post("/upload/multiple", fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-        imagePath = uploadRes.data.url;
+        uploadedUrls = uploadRes.data.urls || [];
         setUploading(false);
       }
 
-      const payload = { ...form, image: imagePath, mrp: form.mrp ? Number(form.mrp) : undefined };
+      const finalImages = [...existingImages, ...uploadedUrls];
+      const payload = {
+        ...form,
+        image: finalImages[0] || "", // pehli image hi card ka cover image hoti hai
+        images: finalImages,
+        mrp: form.mrp ? Number(form.mrp) : undefined,
+      };
       if (form.type === "reseller") {
         payload.sourcePrice = Number(form.sourcePrice);
         payload.sellingPrice = Number(form.sellingPrice);
@@ -189,22 +216,41 @@ export default function AdminAddProduct() {
             </datalist>
           </div>
           <div>
-            <label>Product Image</label>
-            <label className="upload-box" htmlFor="product-image-input">
-              {imagePreview ? (
-                <div className="upload-preview"><img src={imagePreview} alt="preview" /></div>
-              ) : (
-                <div className="upload-hint" style={{ padding: "18px 0" }}>Click to upload an image (jpg, png, webp)</div>
+            <label>Product Images (up to {MAX_IMAGES} — first one is the cover shown on the card)</label>
+            <div className="multi-upload-grid">
+              {existingImages.map((url, i) => (
+                <div className="multi-upload-thumb" key={`ex-${i}`}>
+                  <img src={resolveImageUrl(url)} alt={`Image ${i + 1}`} />
+                  {i === 0 && <span className="cover-badge">Cover</span>}
+                  <button type="button" className="thumb-remove" onClick={() => removeExistingImage(i)} aria-label="Remove image">
+                    <X size={12} />
+                  </button>
+                </div>
+              ))}
+              {newImagePreviews.map((url, i) => (
+                <div className="multi-upload-thumb" key={`new-${i}`}>
+                  <img src={url} alt={`New image ${i + 1}`} />
+                  {existingImages.length === 0 && i === 0 && <span className="cover-badge">Cover</span>}
+                  <button type="button" className="thumb-remove" onClick={() => removeNewImage(i)} aria-label="Remove image">
+                    <X size={12} />
+                  </button>
+                </div>
+              ))}
+              {totalImageCount < MAX_IMAGES && (
+                <label className="multi-upload-add" htmlFor="product-image-input">
+                  + Add
+                  <input
+                    id="product-image-input"
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFileChange}
+                  />
+                </label>
               )}
-              {imagePreview && <div className="upload-hint">Click to change image</div>}
-              <input
-                id="product-image-input"
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-            </label>
+            </div>
+            <p className="upload-hint">{totalImageCount}/{MAX_IMAGES} images added</p>
           </div>
         </div>
 

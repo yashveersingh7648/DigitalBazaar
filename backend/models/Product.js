@@ -5,7 +5,8 @@ const productSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true },
     description: { type: String, default: "" },
     category: { type: String, default: "General" },
-    image: { type: String, default: "" },
+    image: { type: String, default: "" }, // cover image — always images[0]
+    images: { type: [String], default: [] }, // full gallery, up to 6
 
     // "affiliate" -> customer buys on the official partner site (Flipkart/Amazon), you earn commission
     // "reseller"  -> customer orders directly from your site, you fulfill via your authorized supplier

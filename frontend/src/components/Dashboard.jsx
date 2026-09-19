@@ -88,7 +88,7 @@ export default function Dashboard() {
       <table>
         <thead>
           <tr>
-            <th>Product</th><th>Customer</th><th>Qty</th><th>Paid ₹</th><th>Margin ₹</th><th>Payment</th><th>Status</th>
+            <th>Product</th><th>Customer</th><th>Delivery Address</th><th>Qty</th><th>Paid ₹</th><th>Margin ₹</th><th>Payment</th><th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -96,6 +96,7 @@ export default function Dashboard() {
             <tr key={o._id}>
               <td>{o.productName}</td>
               <td>{o.customerName} ({o.customerPhone})</td>
+              <td style={{ maxWidth: 220, whiteSpace: "normal" }}>{o.customerAddress}</td>
               <td>{o.quantity}</td>
               <td>{o.totalPaid}</td>
               <td>{o.totalMargin}</td>
