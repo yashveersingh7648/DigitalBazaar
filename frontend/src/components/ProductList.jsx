@@ -42,6 +42,11 @@ export default function ProductList() {
 
   const handleAffiliateClick = (product) => {
     api.post(`/products/${product._id}/click`).catch(() => {});
+    // Naya tab seedha click ke andar hi (synchronously) kholte hain — warna browser ka
+    // popup-blocker ise rok sakta hai kyunki delay ke baad wo ek "trusted user click" nahi maanta.
+    window.open(product.affiliateLink, "_blank", "noopener,noreferrer");
+    // Current tab par branded "Redirecting..." card dikhate hain — user ko lagta hai wo
+    // hamari hi site ke andar ek smooth transition se guzra, abrupt jump jaisa nahi lagta.
     setRedirecting(product);
   };
 
