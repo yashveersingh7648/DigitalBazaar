@@ -33,7 +33,7 @@ https://www.mongodb.com/cloud/atlas/register → free M0 cluster → connection 
 ### 2. Google OAuth Client ID (Free, login ke liye)
 1. https://console.cloud.google.com/apis/credentials par jao
 2. "Create Credentials" → "OAuth Client ID" → Application type: **Web application**
-3. Authorized JavaScript origins me add karo: `http://localhost:3000` (aur baad me apna live domain)
+3. Authorized JavaScript origins me add karo: `http://localhost:5173/` (aur baad me apna live domain)
 4. Client ID copy karke backend `.env` aur frontend `.env` dono me daalo
 
 ### 3. Flipkart Affiliate Account (Free, commission ke liye)
@@ -59,7 +59,7 @@ cp .env.example .env
 # .env me REACT_APP_GOOGLE_CLIENT_ID bharo
 npm start
 ```
-Runs on `http://localhost:3000`
+Runs on `http://localhost:5173/`
 
 ### 6. Khud ko Admin banao
 `.env` me jo `ADMIN_EMAIL` daala hai, wahi email se register/login karo (Google ya email/password dono se) — automatically admin role mil jayega. Baaki sab users "customer" role me rahenge.

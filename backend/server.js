@@ -20,6 +20,8 @@ import sitemapRoutes from "./routes/sitemap.js";
 import Product from "./models/Product.js";
 import { generateUniqueSlug } from "./utils/slug.js";
 
+import axios from "axios";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
@@ -28,6 +30,8 @@ const app = express();
 const ALLOWED_ORIGINS = [
   "https://digitalbazaar.onrender.com",
   "http://localhost:3000",
+  "http://localhost:5173",      // ✅ Slash hata diya
+  "http://127.0.0.1:5173",
 ];
 app.use(
   cors({
@@ -57,6 +61,14 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/", sitemapRoutes); // /sitemap.xml aur /robots.txt seedhe DB se dynamically generate hote hain
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "DigitalBazaar backend is running",
+    time: new Date().toISOString(),
+  });
+});
+
 app.get("/", (req, res) => res.send("Reseller + Affiliate Platform API running"));
 
 const PORT = process.env.PORT || 5000;
@@ -80,3 +92,17 @@ mongoose
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
   .catch((err) => console.error("MongoDB connection error:", err.message));
+
+
+
+  const SELF_PING_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://digitalbazaar-backend-1qdt.onrender.com/health"
+    : "http://localhost:5000/health";
+
+setInterval(() => {
+  axios
+    .get(SELF_PING_URL)
+    .then(() => console.log("Self-Ping: Server is awake!"))
+    .catch((err) => console.error("Self-Ping Error:", err.message));
+}, 2 * 60 * 1000);
