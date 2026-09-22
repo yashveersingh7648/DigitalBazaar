@@ -41,7 +41,7 @@ export default function Login() {
             }
           }}
           onError={() => setError("Google login failed")}
-          width="100%"
+          width="320"
         />
       </div>
       <div className="divider-text">or continue with email</div>

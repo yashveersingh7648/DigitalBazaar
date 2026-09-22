@@ -1,23 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://market-vtbx.onrender.com/</loc>
+    <loc>https://digitalbazaar.onrender.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://market-vtbx.onrender.com/contact</loc>
+    <loc>https://digitalbazaar.onrender.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://market-vtbx.onrender.com/privacy-policy</loc>
+    <loc>https://digitalbazaar.onrender.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://market-vtbx.onrender.com/terms</loc>
+    <loc>https://digitalbazaar.onrender.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/affiliate-disclosure</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/fashion</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/electronics</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/home-living</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/beauty</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/footwear</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/accessories</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://digitalbazaar.onrender.com/category/kids</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!--
+    NOTE: Individual /product/:slug pages are NOT listed here because this file is static.
+    A full, always-up-to-date sitemap (auto-includes every product) is generated live by
+    the backend at <your-backend-url>/sitemap.xml — see backend/routes/sitemap.js.
+    Once you're on a single custom domain for both frontend+backend, point robots.txt's
+    Sitemap: line at that dynamic URL instead of this static file.
+  -->
 </urlset>

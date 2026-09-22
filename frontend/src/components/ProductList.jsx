@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Heart, ShoppingCart, Check } from "lucide-react";
 import api, { resolveImageUrl } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import SEO from "./SEO";
@@ -100,7 +100,9 @@ export default function ProductList() {
           {p.type === "affiliate" ? `Via ${p.affiliateSource || "Partner"}` : "Sold by us"}
         </span>
 
-        <h3 style={{ fontSize: 16 }}>{p.name}</h3>
+        <h3 style={{ fontSize: 16 }}>
+          {p.slug ? <Link to={`/product/${p.slug}`} className="product-title-link">{p.name}</Link> : p.name}
+        </h3>
         {/* <p className="desc">{p.description}</p> */}
         {(() => {
   const isExpanded = expandedDesc.has(p._id);

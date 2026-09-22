@@ -3,10 +3,28 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
+    slug: { type: String, unique: true, sparse: true, index: true }, // SEO-friendly URL, e.g. "wireless-earbuds-x1"
     description: { type: String, default: "" },
     category: { type: String, default: "General" },
+    seoTitle: { type: String, default: "" }, // optional override for <title>, else auto-built from name
+    seoDescription: { type: String, default: "" }, // optional override for meta description
     image: { type: String, default: "" }, // cover image — always images[0]
     images: { type: [String], default: [] }, // full gallery, up to 6
+
+    // Fashion/footwear size chart — optional, admin fills per product. All measurements in inches.
+    sizeChart: {
+      type: [
+        {
+          size: { type: String, required: true }, // "S", "M", "L", "XL", "8", "9", etc.
+          chest: Number,
+          waist: Number,
+          hip: Number,
+          shoulder: Number,
+          length: Number,
+        },
+      ],
+      default: [],
+    },
 
     // "affiliate" -> customer buys on the official partner site (Flipkart/Amazon), you earn commission
     // "reseller"  -> customer orders directly from your site, you fulfill via your authorized supplier

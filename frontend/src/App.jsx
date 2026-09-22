@@ -15,6 +15,9 @@ import AdminSettings from "./components/AdminSettings";
 import Contact from "./components/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions";
+import AffiliateDisclosure from "./components/AffiliateDisclosure";
+import ProductDetail from "./components/ProductDetail";
+import CategoryPage from "./components/CategoryPage";
 import VisitTracker from "./components/VisitTracker";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
@@ -37,9 +40,12 @@ export default function App() {
               <main>
                 <Routes>
                   <Route path="/" element={<ProductList />} />
+                  <Route path="/product/:slug" element={<ProductDetail />} />
+                  <Route path="/category/:categorySlug" element={<CategoryPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<TermsAndConditions />} />
+                  <Route path="/affiliate-disclosure" element={<AffiliateDisclosure />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route

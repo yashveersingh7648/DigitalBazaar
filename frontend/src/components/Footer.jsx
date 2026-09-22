@@ -49,7 +49,8 @@ Bazaar</span>
           <div>
             <h4>Legal</h4>
             <Link to="/privacy-policy">Privacy Policy</Link><br />
-            <Link to="/terms">Terms &amp; Conditions</Link>
+            <Link to="/terms">Terms &amp; Conditions</Link><br />
+            <Link to="/affiliate-disclosure">Affiliate Disclosure</Link>
           </div>
         </div>
         <div className="footer-bottom">

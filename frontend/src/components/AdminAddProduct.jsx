@@ -15,6 +15,7 @@ const emptyForm = {
   images: [],
   mrp: "",
   featured: false,
+  sizeChart: [],
   // reseller
   sourcePrice: "",
   sellingPrice: "",
@@ -58,6 +59,13 @@ export default function AdminAddProduct() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  const addSizeRow = () =>
+    setForm((f) => ({ ...f, sizeChart: [...f.sizeChart, { size: "", chest: "", waist: "", hip: "", shoulder: "", length: "" }] }));
+  const updateSizeRow = (idx, field, value) =>
+    setForm((f) => ({ ...f, sizeChart: f.sizeChart.map((r, i) => (i === idx ? { ...r, [field]: value } : r)) }));
+  const removeSizeRow = (idx) =>
+    setForm((f) => ({ ...f, sizeChart: f.sizeChart.filter((_, i) => i !== idx) }));
+
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
@@ -96,6 +104,7 @@ export default function AdminAddProduct() {
       images: p.images || [],
       mrp: p.mrp ?? "",
       featured: !!p.featured,
+      sizeChart: p.sizeChart || [],
       sourcePrice: p.sourcePrice ?? "",
       sellingPrice: p.sellingPrice ?? "",
       supplierName: p.supplierName || "",
@@ -139,6 +148,16 @@ export default function AdminAddProduct() {
         image: finalImages[0] || "", // pehli image hi card ka cover image hoti hai
         images: finalImages,
         mrp: form.mrp ? Number(form.mrp) : undefined,
+        sizeChart: form.sizeChart
+          .filter((r) => r.size)
+          .map((r) => ({
+            size: r.size,
+            chest: r.chest ? Number(r.chest) : undefined,
+            waist: r.waist ? Number(r.waist) : undefined,
+            hip: r.hip ? Number(r.hip) : undefined,
+            shoulder: r.shoulder ? Number(r.shoulder) : undefined,
+            length: r.length ? Number(r.length) : undefined,
+          })),
       };
       if (form.type === "reseller") {
         payload.sourcePrice = Number(form.sourcePrice);
@@ -267,6 +286,20 @@ export default function AdminAddProduct() {
           (bestseller, high rating, high demand) on its source site or in your own sales,
           and want it highlighted in the homepage "Trending picks" strip.
         </label>
+
+        <label>Size Chart (optional — Fashion/Footwear items; inches; leave blank if not applicable)</label>
+        {form.sizeChart.map((row, idx) => (
+          <div className="size-row" key={idx}>
+            <input className="form-input" placeholder="Size (M, L, 9...)" value={row.size} onChange={(e) => updateSizeRow(idx, "size", e.target.value)} />
+            <input className="form-input" placeholder="Chest" type="number" value={row.chest} onChange={(e) => updateSizeRow(idx, "chest", e.target.value)} />
+            <input className="form-input" placeholder="Waist" type="number" value={row.waist} onChange={(e) => updateSizeRow(idx, "waist", e.target.value)} />
+            <input className="form-input" placeholder="Hip" type="number" value={row.hip} onChange={(e) => updateSizeRow(idx, "hip", e.target.value)} />
+            <input className="form-input" placeholder="Shoulder" type="number" value={row.shoulder} onChange={(e) => updateSizeRow(idx, "shoulder", e.target.value)} />
+            <input className="form-input" placeholder="Length" type="number" value={row.length} onChange={(e) => updateSizeRow(idx, "length", e.target.value)} />
+            <button type="button" className="btn btn-outline btn-sm" onClick={() => removeSizeRow(idx)} aria-label="Remove size"><X size={13} /></button>
+          </div>
+        ))}
+        <button type="button" className="btn btn-outline btn-sm" onClick={addSizeRow} style={{ marginBottom: 14 }}>+ Add size row</button>
 
         {form.type === "reseller" ? (
           <>

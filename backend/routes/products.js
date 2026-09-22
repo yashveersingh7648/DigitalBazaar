@@ -1,6 +1,7 @@
 import express from "express";
 import Product from "../models/Product.js";
 import { protect, adminOnly } from "../middleware/auth.js";
+import { generateUniqueSlug } from "../utils/slug.js";
 
 const router = express.Router();
 
@@ -54,6 +55,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET one product by SEO slug - public (product detail page ke liye)
+router.get("/slug/:slug", async (req, res) => {
+  try {
+    const product = await Product.findOne({ slug: req.params.slug, isActive: true });
+    if (!product) return res.status(404).json({ error: "Product not found" });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -80,6 +92,7 @@ router.post("/", protect, adminOnly, async (req, res) => {
     const affiliateError = validateAffiliate(body);
     if (affiliateError) return res.status(400).json({ error: affiliateError });
 
+    body.slug = await generateUniqueSlug(Product, body.name);
     const product = await Product.create(body);
     res.status(201).json(product);
   } catch (err) {
@@ -94,6 +107,13 @@ router.put("/:id", protect, adminOnly, async (req, res) => {
       const affiliateError = validateAffiliate(req.body);
       if (affiliateError) return res.status(400).json({ error: affiliateError });
     }
+    // Naam badla ho ya slug missing ho, tabhi naya slug banao — warna existing URL kabhi tootega nahi
+    const existing = await Product.findById(req.params.id);
+    if (!existing) return res.status(404).json({ error: "Product not found" });
+    if (!existing.slug || (req.body.name && req.body.name !== existing.name)) {
+      req.body.slug = await generateUniqueSlug(Product, req.body.name || existing.name, existing._id);
+    }
+
     const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
