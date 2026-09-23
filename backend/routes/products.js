@@ -11,7 +11,8 @@ const router = express.Router();
 const AFFILIATE_DOMAINS = {
   flipkart: ["flipkart.com", "fkrt.it", "fkrt.co"],
   meesho: ["meesho.com"],
-  amazon: ["amazon.in", "amzn.to", "amzn.in"],
+  // amazon: ["amazon.in", "amzn.to", "amzn.in"],
+  amazon: ["amazon.in", "amzn.to", "amzn.in", "link.amazon"],
   myntra: ["myntra.com"],
   nykaa: ["nykaa.com"],
 };
