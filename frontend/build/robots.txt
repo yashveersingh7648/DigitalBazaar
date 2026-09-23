@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://digitalbazaar.onrender.com/sitemap.xml
