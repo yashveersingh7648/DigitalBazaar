@@ -5,7 +5,7 @@ export const SITE_URL = "https://digitalbazaar.onrender.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export default function SEO({ title, description, path = "/", noindex = false, image, jsonLd }) {
-  const fullTitle = title ? `${title} — Bazaar` : "Bazaar — Honest prices, curated finds";
+  const fullTitle = title ? `${title} — DigitalBazaar` : "DigitalBazaar — Honest Prices, Curated Finds";
   const desc =
     description ||
     "Shop curated products sourced directly by us, or find trusted picks from partner stores — all in one place.";
