@@ -221,7 +221,7 @@ export default function ProductList() {
       <TrustStrip />
 
       <div id="category-bar">
-        <CategoryBar active={category} onSelect={setCategory} />
+        <CategoryBar />
       </div>
 
       {!loading && featured.length > 0 && (

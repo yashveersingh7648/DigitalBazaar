@@ -1,4 +1,4 @@
-# Bazaar — Affiliate + Reseller Platform (MERN)
+# DigitalBazaar — Affiliate + Reseller Platform (MERN)
 
 Ek professional website jisme:
 - **User login** (email/password + Google) — customers order place kar sakte hain

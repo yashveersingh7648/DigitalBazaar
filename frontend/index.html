@@ -24,7 +24,6 @@
     <!-- Primary SEO -->
     <title>DigitalBazaar — Honest Prices, Curated Finds</title>
     <meta name="description" content="Shop curated products sourced directly by us, or find trusted picks from Flipkart and other partners — all in one place, with clear pricing and no guesswork." />
-    <meta name="keywords" content="online store, shop India, curated products, Flipkart deals, affiliate shopping" />
     <link rel="canonical" href="https://digitalbazaar.onrender.com/" />
 
 
@@ -61,6 +60,48 @@
   </head>
   <body>
     <noscript>Is website ko dekhne ke liye JavaScript on karo.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Ye fallback content sirf un crawlers/tools ke liye hai jo JavaScript run nahi karte —
+        React load hote hi ise turant replace kar deta hai, real users ko ye kabhi dikhta nahi.
+        Isse page ke raw HTML mein hamesha ek real H1, kuch text, aur internal links maujood
+        rehte hain (SEO checkers "0 words / no H1 / no internal links" na bolein).
+      -->
+      <header>
+        <a href="/">DigitalBazaar</a>
+        <nav>
+          <a href="/category/fashion">Fashion</a>
+          <a href="/category/electronics">Electronics</a>
+          <a href="/category/home-living">Home &amp; Living</a>
+          <a href="/category/beauty">Beauty</a>
+          <a href="/category/footwear">Footwear</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <h1>Curated finds, honest prices</h1>
+        <p>
+          DigitalBazaar is a curated online store. Some products are sourced and shipped
+          directly by us, and others are handpicked partner deals from Flipkart, Meesho,
+          Amazon, Myntra and Nykaa — every listing is clearly labelled so you always know
+          exactly what you're buying and from where.
+        </p>
+        <p>
+          Shop by category:
+          <a href="/category/fashion">Fashion</a>,
+          <a href="/category/electronics">Electronics</a>,
+          <a href="/category/home-living">Home &amp; Living</a>,
+          <a href="/category/beauty">Beauty</a>,
+          <a href="/category/footwear">Footwear</a>,
+          <a href="/category/accessories">Accessories</a> and
+          <a href="/category/kids">Kids</a>.
+        </p>
+      </main>
+      <footer>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <a href="/affiliate-disclosure">Affiliate Disclosure</a>
+      </footer>
+    </div>
   </body>
 </html>

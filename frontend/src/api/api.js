@@ -12,7 +12,7 @@ const isLocalDev =
 const PRODUCTION_API_URL = "https://digitalbazaar-backend-1qdt.onrender.com/api";
 const LOCAL_API_URL = "http://localhost:5000/api";
 
-const API_URL = import.meta.env.REACT_APP_API_URL || (isLocalDev ? LOCAL_API_URL : PRODUCTION_API_URL);
+const API_URL = import.meta.env.VITE_API_URL || (isLocalDev ? LOCAL_API_URL : PRODUCTION_API_URL);
 export { API_URL };
 // API_URL me "/api" suffix hota hai — uploaded images "/uploads/..." isi server ke origin se aati hain
 export const SERVER_ORIGIN = API_URL.replace(/\/api\/?$/, "");

@@ -1,0 +1,6 @@
+# Render (Netlify-style) rewrite rules for the static frontend site.
+# Status 200 = rewrite/proxy (URL stays on digitalbazaar.onrender.com), not a redirect —
+# so Google always sees /sitemap.xml and /robots.txt on THIS domain, but the actual content
+# comes live from the backend, which includes every active product + category automatically.
+/sitemap.xml  https://digitalbazaar-backend-1qdt.onrender.com/sitemap.xml  200
+/robots.txt   https://digitalbazaar-backend-1qdt.onrender.com/robots.txt   200
