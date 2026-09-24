@@ -142,9 +142,12 @@ export default function ProductList() {
         </div>
 
         {p.type === "affiliate" ? (
-          <button className="btn btn-accent" onClick={() => handleAffiliateClick(p)}>
-            View on {p.affiliateSource || "Partner Site"}
-          </button>
+          // <button className="btn btn-accent" onClick={() => handleAffiliateClick(p)}>
+          //   View on {p.affiliateSource || "Partner Site"}
+          // </button>
+          <button className="btn " onClick={() => handleAffiliateClick(p)}>
+    Buy Now
+  </button>
         ) : (
           <div style={{ display: "flex", gap: 8 }}>
             <button
