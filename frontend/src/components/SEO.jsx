@@ -5,10 +5,10 @@ export const SITE_URL = "https://digitalbazaar.onrender.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export default function SEO({ title, description, path = "/", noindex = false, image, jsonLd }) {
-  const fullTitle = title ? `${title} — DigitalBazaar` : "DigitalBazaar — Honest Prices, Curated Finds";
+  const fullTitle = title ? `${title} — DigitalBazaar` : "DigitalBazaar — Curated Finds, Honest Prices | Online Shopping";
   const desc =
     description ||
-    "Shop curated products sourced directly by us, or find trusted picks from partner stores — all in one place.";
+    "Shop curated products sourced directly by us, or find trusted picks from Flipkart, Meesho, Amazon, Myntra and Nykaa — all clearly labelled, all in one place.";
   const url = `${SITE_URL}${path}`;
   const ogImage = image || DEFAULT_OG_IMAGE;
 
@@ -18,6 +18,8 @@ export default function SEO({ title, description, path = "/", noindex = false, i
       <meta name="description" content={desc} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={url} />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="DigitalBazaar" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={desc} />
       <meta property="og:url" content={url} />

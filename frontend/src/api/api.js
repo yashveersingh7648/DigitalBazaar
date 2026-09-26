@@ -21,8 +21,16 @@ export const SERVER_ORIGIN = API_URL.replace(/\/api\/?$/, "");
 // apne /uploads/xyz.jpg wale relative path — dono cases ko sahi <img src> me convert karta hai
 export const resolveImageUrl = (image) => {
   if (!image) return "";
-  if (/^https?:\/\//i.test(image)) return image;
-  return `${SERVER_ORIGIN}${image.startsWith("/") ? "" : "/"}${image}`;
+  if (!/^https?:\/\//i.test(image)) {
+    return `${SERVER_ORIGIN}${image.startsWith("/") ? "" : "/"}${image}`;
+  }
+  // Cloudinary URLs ke liye auto-format + auto-quality transformation inject karte hain
+  // (jaise .../upload/f_auto,q_auto/...) — isse browser ko sabse chhoti/tez format (WebP/AVIF)
+  // milti hai bina koi manual resizing kiye, page load kaafi fast ho jaata hai.
+  if (image.includes("res.cloudinary.com") && image.includes("/upload/") && !image.includes("/upload/f_auto")) {
+    return image.replace("/upload/", "/upload/f_auto,q_auto/");
+  }
+  return image;
 };
 
 const api = axios.create({ baseURL: API_URL });

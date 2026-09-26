@@ -21,30 +21,45 @@
     <link rel="icon" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
 
-    <!-- Primary SEO -->
-    <title>DigitalBazaar — Honest Prices, Curated Finds</title>
-    <meta name="description" content="Shop curated products sourced directly by us, or find trusted picks from Flipkart and other partners — all in one place, with clear pricing and no guesswork." />
-    <link rel="canonical" href="https://digitalbazaar.onrender.com/" />
-
+    <!--
+      Title/description/canonical/OG/twitter tags are NOT hardcoded here anymore —
+      they are set once, dynamically, by SEO.jsx (react-helmet-async) on every page.
+      Having them here too used to create duplicate <title>/<meta description>/<link canonical>
+      tags once React mounted (SEO checkers flagged "2 canonical tags", "2 description tags").
+    -->
+    <title>DigitalBazaar — Curated Finds, Honest Prices | Online Shopping</title>
 
     <meta name="google-site-verification" content="qja6dUOX5XK20GMDTf01ewPBGPhyh3zWr9kqhp-GT1g" />
 
-    <!-- Open Graph / social sharing -->
+    <!--
+      Open Graph / Twitter tags ARE kept static here (unlike title/description/canonical) —
+      WhatsApp, Facebook aur Twitter ke link-preview bots JavaScript run nahi karte, isliye
+      inhe kaam karne ke liye ye tags raw HTML mein hi hone chahiye. SEO.jsx per-page inhe
+      override kar deta hai un crawlers ke liye jo JS run karte hain (Google included).
+    -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="DigitalBazaar — Honest Prices, Curated Finds" />
-    <meta property="og:description" content="Shop curated products sourced directly by us, or find trusted picks from Flipkart and other partners — all in one place, with clear pricing and no guesswork." />
+    <meta property="og:site_name" content="DigitalBazaar" />
+    <meta property="og:title" content="DigitalBazaar — Curated Finds, Honest Prices" />
+    <meta property="og:description" content="Shop curated fashion, electronics, home and beauty products — some sourced and shipped directly by us, others handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa." />
     <meta property="og:url" content="https://digitalbazaar.onrender.com/" />
     <meta property="og:image" content="https://digitalbazaar.onrender.com/logo.png" />
-    <meta property="og:site_name" content="DigitalBazaar" />
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DigitalBazaar — Honest Prices, Curated Finds" />
-    <meta name="twitter:description" content="Shop curated products sourced directly by us, or find trusted picks from Flipkart and other partners — all in one place, with clear pricing and no guesswork." />
+    <meta name="twitter:title" content="DigitalBazaar — Curated Finds, Honest Prices" />
+    <meta name="twitter:description" content="Shop curated fashion, electronics, home and beauty products — some sourced and shipped directly by us, others handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa." />
     <meta name="twitter:image" content="https://digitalbazaar.onrender.com/logo.png" />
 
-    <!-- Fonts -->
+    <!-- Fonts: non-render-blocking load -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" />
+    </noscript>
 
     <!-- Structured data: Organization -->
     <script type="application/ld+json">

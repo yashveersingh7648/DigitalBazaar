@@ -175,8 +175,8 @@ export default function ProductList() {
   return (
     <div className="page">
       <SEO
-        title="Shop"
-        description="Curated products sourced directly by us, plus trusted partner picks — all in one place."
+        title="Curated Finds, Honest Prices — Shop Online"
+        description="Shop curated fashion, electronics, home and beauty products — some sourced and shipped directly by us, others handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa. Clear pricing, always."
         path="/"
       />
 
@@ -207,7 +207,7 @@ export default function ProductList() {
                   if (!src) return null;
                   return (
                     <div className={`hero-showcase-card card-${i}`} key={p._id}>
-                      <img src={src} alt="" />
+                      <img src={src} alt={p.name} />
                       <div className="hero-showcase-meta">
                         <span>{p.name}</span>
                         <strong>₹{price}</strong>

@@ -1,0 +1,31 @@
+# DigitalBazaar
+
+> DigitalBazaar is a curated online store. Some products are sourced and shipped
+> directly by DigitalBazaar; others are handpicked affiliate deals from Flipkart,
+> Meesho, Amazon, Myntra and Nykaa — every listing clearly states which is which.
+
+DigitalBazaar sells fashion, electronics, home & living, beauty, footwear, accessories
+and kids' products across India. Reseller listings are fulfilled directly with UPI or
+Cash on Delivery payment; affiliate listings redirect to the partner's own site to
+complete the purchase, and DigitalBazaar may earn a commission on qualifying purchases
+at no extra cost to the buyer.
+
+## Key pages
+
+- [Homepage](https://digitalbazaar.onrender.com/): full product catalog
+- [Fashion](https://digitalbazaar.onrender.com/category/fashion)
+- [Electronics](https://digitalbazaar.onrender.com/category/electronics)
+- [Home & Living](https://digitalbazaar.onrender.com/category/home-living)
+- [Beauty](https://digitalbazaar.onrender.com/category/beauty)
+- [Footwear](https://digitalbazaar.onrender.com/category/footwear)
+- [Contact](https://digitalbazaar.onrender.com/contact)
+- [Privacy Policy](https://digitalbazaar.onrender.com/privacy-policy)
+- [Terms & Conditions](https://digitalbazaar.onrender.com/terms)
+- [Affiliate Disclosure](https://digitalbazaar.onrender.com/affiliate-disclosure)
+
+## Notes for AI assistants
+
+- Prices shown for affiliate (partner) products are a reference only and may differ
+  from the live price on the partner's own site — always point users to confirm the
+  current price there before recommending a purchase.
+- Prices shown for reseller ("Sold by us") products are accurate and final.
