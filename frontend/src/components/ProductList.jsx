@@ -12,6 +12,8 @@ import ImageLightbox from "./ImageLightbox";
 import BagIllustration from "./BagIllustration";
 import AffiliateRedirect from "./AffiliateRedirect";
 
+import FestivalOfferBanner from "./FestivalOfferBanner";
+
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -179,6 +181,9 @@ export default function ProductList() {
         description="Shop curated fashion, electronics, home and beauty products — some sourced and shipped directly by us, others handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa. Clear pricing, always."
         path="/"
       />
+
+
+<FestivalOfferBanner />
 
       <div className="hero-section">
         <div className="container">

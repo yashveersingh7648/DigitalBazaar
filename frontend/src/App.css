@@ -1536,3 +1536,84 @@ tbody tr:last-child td { border-bottom: none; }
 .desc-toggle:hover {
   text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Festival Special Discount Offer banner (home page, cartoon style) ---------- */
+.festival-offer-banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #3a2354, #5a3980, #3a2354);
+  border-top: 1px solid rgba(247, 202, 125, 0.35);
+  border-bottom: 1px solid rgba(247, 202, 125, 0.35);
+  padding: 10px 0;
+}
+
+.festival-offer-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.festival-offer-text {
+  color: #fff;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+  animation: festivalTextBounce 2.2s ease-in-out infinite;
+}
+.festival-offer-text strong { color: var(--gold-bright); font-weight: 700; }
+.festival-offer-cta { padding: 6px 18px; font-size: 12.5px; }
+
+.festival-icon { color: var(--gold-bright); }
+.festival-icon-bounce { animation: festivalIconBounce 1.4s ease-in-out infinite; }
+.festival-icon-wiggle { animation: festivalIconWiggle 1.8s ease-in-out infinite; }
+
+/* Confetti — chhote rectangles upar se neeche girte hue, alag-alag speed/delay ke saath */
+.festival-offer-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  width: 6px;
+  height: 10px;
+  border-radius: 2px;
+  opacity: 0.85;
+  animation: confettiFall 3.2s linear infinite;
+}
+
+@keyframes festivalIconBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(-8deg); }
+}
+@keyframes festivalIconWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(12deg); }
+  75% { transform: rotate(-12deg); }
+}
+@keyframes festivalTextBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes confettiFall {
+  0% { top: -12px; transform: rotate(0deg); opacity: 1; }
+  100% { top: 60px; transform: rotate(360deg); opacity: 0; }
+}
