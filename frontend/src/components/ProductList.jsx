@@ -178,7 +178,7 @@ export default function ProductList() {
     <div className="page">
       <SEO
         title="Curated Finds, Honest Prices — Shop Online"
-        description="Shop curated fashion, electronics, home and beauty products — some sourced and shipped directly by us, others handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa. Clear pricing, always."
+       description="Shop curated fashion, electronics, home & beauty — sourced by us or handpicked from Flipkart, Meesho, Amazon, Myntra & Nykaa. Clear pricing."
         path="/"
       />
 
@@ -212,7 +212,8 @@ export default function ProductList() {
                   if (!src) return null;
                   return (
                     <div className={`hero-showcase-card card-${i}`} key={p._id}>
-                      <img src={src} alt={p.name} />
+                      {/* <img src={src} alt={p.name} /> */}
+                      <img src={src} alt={p.name} loading="lazy" decoding="async" />
                       <div className="hero-showcase-meta">
                         <span>{p.name}</span>
                         <strong>₹{price}</strong>
@@ -268,6 +269,39 @@ export default function ProductList() {
           </div>
         )}
       </div>
+
+
+            <section className="about-section">
+        <div className="container">
+          <span className="about-eyebrow">About us</span>
+          <h2 className="about-title">Why shop at DigitalBazaar?</h2>
+          <p className="about-intro">
+            DigitalBazaar is a curated online store for fashion, men's shirts, electronics, home and living,
+            beauty, footwear, accessories and kids' products across India.
+          </p>
+
+          <div className="about-grid">
+            <article className="about-card">
+              <h3>Sold &amp; shipped by us</h3>
+              <p>
+                Some products are sourced and shipped directly by us, and you can pay by UPI or Cash on Delivery.
+              </p>
+            </article>
+            <article className="about-card">
+              <h3>Handpicked partner deals</h3>
+              <p>
+                Other listings are handpicked deals from Flipkart, Meesho, Amazon, Myntra and Nykaa. For those, you
+                complete the purchase on the partner's own site, and we may earn a small commission at no extra cost
+                to you.
+              </p>
+            </article>
+          </div>
+
+          <p className="about-note">
+            Every product is clearly labelled, so you always know what you are buying and from where.
+          </p>
+        </div>
+      </section>
 
       {lightboxImg && (
         <ImageLightbox images={lightboxImg.images} alt={lightboxImg.alt} onClose={() => setLightboxImg(null)} />

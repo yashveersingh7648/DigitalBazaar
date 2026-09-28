@@ -44,7 +44,8 @@ Bazaar</span>
             <h4>Company</h4>
             <a href="mailto:yashveersingh7648@gmail.com">yashveersingh7648@gmail.com</a><br />
             <a href="tel:+916396773509">+91 63967 73509</a><br />
-            <span>Noida, Sector 49, UP</span>
+            {/* <span>Noida, Sector 49, UP</span> */}
+            <span>Sector 49, Noida, Uttar Pradesh, India</span>
           </div>
           <div>
             <h4>Legal</h4>
