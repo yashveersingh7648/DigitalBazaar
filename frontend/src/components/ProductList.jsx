@@ -300,6 +300,12 @@ export default function ProductList() {
           <p className="about-note">
             Every product is clearly labelled, so you always know what you are buying and from where.
           </p>
+          <p className="about-note">
+            Browse by category — Fashion, Electronics, Home &amp; Living, Beauty, Footwear,
+            Accessories or Kids — or use the Shop Now button above to see everything in one
+            place. New arrivals, festive offers and handpicked partner deals are added
+            regularly, so it's worth checking back often.
+          </p>
         </div>
       </section>
 
