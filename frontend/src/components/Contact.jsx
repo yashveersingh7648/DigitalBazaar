@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import api from "../api/api";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -27,7 +28,7 @@ export default function Contact() {
 
   return (
     <div className="page">
-      <SEO title="Contact Us" path="/contact" />
+      <SEO {...PAGE_META.contact} />
 
       <div className="hero-section hero-section-sm">
         <div className="container">

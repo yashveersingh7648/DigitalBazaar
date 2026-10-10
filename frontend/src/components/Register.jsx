@@ -3,6 +3,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function Register() {
   const { register, googleLogin } = useAuth();
@@ -23,7 +24,7 @@ export default function Register() {
 
   return (
     <div className="page">
-      <SEO title="Create account" path="/register" />
+      <SEO {...PAGE_META.register} />
       <div className="form-card">
       <h2>Create account</h2>
       <p style={{ color: "var(--muted)", fontSize: 14, marginTop: -4 }}>

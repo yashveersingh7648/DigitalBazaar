@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import api, { resolveImageUrl } from "../api/api";
 import SEO from "./SEO";
 import Reveal from "./Reveal";
+import { categoryMeta } from "../seoMeta.mjs";
 
 const CATEGORY_LABELS = {
   fashion: "Fashion",
@@ -28,10 +29,7 @@ export default function CategoryPage() {
       .finally(() => setLoading(false));
   }, [categorySlug]);
 
-  const seoDesc = useMemo(
-    () => `Shop ${label} — curated picks sourced directly by us and handpicked partner deals, all clearly labelled.`,
-    [label]
-  );
+  const seoDesc = useMemo(() => categoryMeta(label).description, [label]);
 
   return (
     <div className="page container" style={{ paddingTop: 40 }}>

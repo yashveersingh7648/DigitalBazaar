@@ -1,10 +1,11 @@
 import React from "react";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function PrivacyPolicy() {
   return (
     <div className="page container legal-page">
-      <SEO title="Privacy Policy" path="/privacy-policy" />
+      <SEO {...PAGE_META.privacy} />
       <h1>Privacy Policy</h1>
       <p className="legal-updated">Last updated: {new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })}</p>
 

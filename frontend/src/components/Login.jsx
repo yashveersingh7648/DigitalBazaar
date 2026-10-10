@@ -3,6 +3,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function Login() {
   const { login, googleLogin } = useAuth();
@@ -23,7 +24,7 @@ export default function Login() {
 
   return (
     <div className="page">
-      <SEO title="Log in" path="/login" />
+      <SEO {...PAGE_META.login} />
       <div className="form-card">
       <h2>Log in</h2>
       <p style={{ color: "var(--muted)", fontSize: 14, marginTop: -4 }}>

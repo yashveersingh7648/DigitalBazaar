@@ -1,10 +1,11 @@
 import React from "react";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function TermsAndConditions() {
   return (
     <div className="page container legal-page">
-      <SEO title="Terms & Conditions" path="/terms" />
+      <SEO {...PAGE_META.terms} />
       <h1>Terms &amp; Conditions</h1>
       <p className="legal-updated">Last updated: {new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })}</p>
 

@@ -66,8 +66,11 @@ export default function ProductDetail() {
   const discountPct = hasDiscount ? Math.round(((product.mrp - price) / product.mrp) * 100) : 0;
   const gallery = (product.images?.length > 0 ? product.images : [product.image]).filter(Boolean).map(resolveImageUrl);
 
-  const seoTitle = product.seoTitle || `${product.name}${price ? ` Under ₹${Math.ceil(price / 100) * 100}` : ""}`;
-  const seoDesc = product.seoDescription || (product.description || "").slice(0, 155);
+  // Same rules as scripts/prerender.mjs, so raw HTML and React-set tags always agree.
+  const tidy = (t) => String(t || "").replace(/\s+/g, " ").trim();
+  const seoTitle = product.seoTitle || product.name;
+  const rawDesc = tidy(product.seoDescription || product.description || `${product.name} at DigitalBazaar.`);
+  const seoDesc = rawDesc.length <= 155 ? rawDesc : rawDesc.slice(0, 154).replace(/\s+\S*$/, "") + "…";
 
   // Affiliate products ka price partner site par badal sakta hai — isliye offers.price sirf
   // reseller (apni site par bikne wale, confirmed price) products ke liye include karte hain.

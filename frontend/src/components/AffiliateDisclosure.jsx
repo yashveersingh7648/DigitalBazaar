@@ -1,10 +1,11 @@
 import React from "react";
 import SEO from "./SEO";
+import { PAGE_META } from "../seoMeta.mjs";
 
 export default function AffiliateDisclosure() {
   return (
     <div className="page container legal-page">
-      <SEO title="Affiliate Disclosure" path="/affiliate-disclosure" />
+      <SEO {...PAGE_META.affiliate} />
       <h1>Affiliate Disclosure</h1>
       <p className="legal-updated">Last updated: {new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })}</p>
 
