@@ -64,7 +64,14 @@ export default function ProductDetail() {
   const price = product.type === "affiliate" ? product.displayPrice : product.sellingPrice;
   const hasDiscount = product.mrp && price && product.mrp > price;
   const discountPct = hasDiscount ? Math.round(((product.mrp - price) / product.mrp) * 100) : 0;
-  const gallery = (product.images?.length > 0 ? product.images : [product.image]).filter(Boolean).map(resolveImageUrl);
+  // Full-resolution URLs — used for the lightbox (full-screen zoom) and the Product schema,
+  // both of which should keep original quality.
+  const gallery = (product.images?.length > 0 ? product.images : [product.image]).filter(Boolean).map((img) => resolveImageUrl(img));
+  // Resized URLs for the inline page gallery only — no point downloading a full-size original
+  // for a ~500px main image or a ~70px thumbnail (Cloudinary images only; local /uploads are
+  // served as-is since there's no resize endpoint for those).
+  const galleryMain = (product.images?.length > 0 ? product.images : [product.image]).filter(Boolean).map((img) => resolveImageUrl(img, 900));
+  const galleryThumbs = (product.images?.length > 0 ? product.images : [product.image]).filter(Boolean).map((img) => resolveImageUrl(img, 150));
 
   // Same rules as scripts/prerender.mjs, so raw HTML and React-set tags always agree.
   const tidy = (t) => String(t || "").replace(/\s+/g, " ").trim();
@@ -120,13 +127,13 @@ export default function ProductDetail() {
       <div className="product-detail-grid">
         <div>
           <div className="pd-gallery-main" onClick={() => setLightboxOpen(true)}>
-            {gallery[activeImg] && <img src={gallery[activeImg]} alt={product.name} />}
+            {galleryMain[activeImg] && <img src={galleryMain[activeImg]} alt={product.name} loading="lazy" decoding="async" />}
           </div>
           {gallery.length > 1 && (
             <div className="pd-thumbs">
-              {gallery.map((src, i) => (
+              {galleryThumbs.map((src, i) => (
                 <button key={i} className={`pd-thumb ${i === activeImg ? "active" : ""}`} onClick={() => setActiveImg(i)}>
-                  <img src={src} alt="" />
+                  <img src={src} alt="" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>

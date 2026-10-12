@@ -121,6 +121,18 @@ ${CATEGORIES.map((c) => `          <li><a href="/category/${c.slug}">${esc(c.lab
         <p><strong>Is ${BRAND} safe to shop from?</strong> Yes — payments are handled securely, and every listing states clearly whether it ships from us or from a partner site.</p>
         <p><strong>What payment methods are accepted?</strong> Products sold directly by us can be paid for using UPI or Cash on Delivery. Partner deals are completed on the partner's own checkout.</p>
         <p><strong>How do I contact ${BRAND}?</strong> Visit the <a href="/contact">Contact</a> page for email, phone and a contact form — we usually reply within a day.</p>
+        <h3>How ordering works</h3>
+        <p>Browsing is simple: pick a category or scroll the homepage, open any product for full details and photos, then tap Buy Now. Items marked "Sold by us" are checked out on ${BRAND} directly, where UPI and Cash on Delivery are both accepted. Items marked with a partner name open on that partner's own site to complete the purchase, and we may earn a small commission at no extra cost to you.</p>
+        <h3>Delivery and returns</h3>
+        <p>Orders sold and shipped directly by us are usually dispatched within 1-2 business days, with delivery timelines shown at checkout before you pay. If something arrives damaged or isn't as described, reach out through the <a href="/contact">Contact</a> page within a reasonable window and we'll help sort out a replacement or refund. Partner deals follow that partner's own delivery and return policy, shown on their checkout page.</p>
+        <h3>Categories at a glance</h3>
+        <p>Fashion covers everyday clothing and casual wear for men and women. Electronics includes gadgets and mobile accessories picked for genuine usefulness rather than just low price. Home and Living has kitchen, storage and other items that make daily routines a little easier. Beauty focuses on everyday personal care products from sellers we trust. Footwear spans casual shoes and sandals for men, women and kids. Accessories covers bags, watches, belts and the small things that finish an outfit. Kids has clothing and everyday products sized for children.</p>
+        <h3>Payments and security</h3>
+        <p>Checkout uses secure payment handling, and ${BRAND} never asks for your card or UPI PIN outside the actual payment screen. Orders sold directly by us can be paid by UPI or settled as Cash on Delivery, so you're never forced into a single payment method. Partner orders are paid on that partner's own secure checkout, which is covered by their own payment protections.</p>
+        <h3>New arrivals every week</h3>
+        <p>Fresh products are added regularly across every category, alongside festive offers and handpicked partner deals when they're genuinely worth it. It's worth checking back often, since what's trending can change week to week and good deals don't always stay listed for long.</p>
+        <h3>Trust and support</h3>
+        <p>Every listing states plainly whether it's sold by ${BRAND} or by a partner, so there's never any confusion about who ships the order or who to contact afterward. Prices shown already include any discount, with the original price struck through where one applies. If you have a question before buying, the <a href="/contact">Contact</a> page reaches us by email, phone or a short form, and we usually reply within a day.</p>
         <p>Share ${BRAND}: <a href="https://wa.me/?text=${encodeURIComponent(SITE_URL)}">WhatsApp</a>, <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}">Facebook</a>, <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL)}">X / Twitter</a>.</p>`),
   });
 

@@ -67,7 +67,7 @@ export default function Cart() {
 
       {items.map((item) => item.product && (
         <div className="cart-item" key={item.product._id}>
-          {item.product.image && <img src={resolveImageUrl(item.product.image)} alt={item.product.name} />}
+          {item.product.image && <img src={resolveImageUrl(item.product.image, 150)} alt={item.product.name} loading="lazy" />}
           <div className="cart-item-info">
             <h4>{item.product.name}</h4>
             <p style={{ color: "var(--muted)", fontSize: 13, margin: "0 0 8px" }}>₹{item.product.sellingPrice} each</p>
