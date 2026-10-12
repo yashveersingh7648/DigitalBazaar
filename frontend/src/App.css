@@ -1710,8 +1710,103 @@ tbody tr:last-child td { border-bottom: none; }
   font-style: italic;
   color: var(--muted);
 }
+
+/* ---------- About section: extra info cards (ordering / delivery / payments / trust) ---------- */
+.about-grid-secondary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  text-align: left;
+  margin-top: 20px;
+}
+.about-grid-secondary .about-card {
+  border-top-color: var(--blue);
+}
+
+/* ---------- About section: category chip list (replaces a long category paragraph) ---------- */
+.about-category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.about-category-chips a {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.about-category-chips a:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+
+/* ---------- About section: FAQ accordion ---------- */
+.about-faq {
+  max-width: 720px;
+  margin: 48px auto 0;
+  text-align: left;
+}
+.about-faq-title {
+  font-size: 20px;
+  color: var(--ink);
+  text-align: center;
+  margin: 0 0 18px;
+}
+.faq-item {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--blue);
+  flex-shrink: 0;
+  transition: transform 0.2s var(--ease);
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item[open] summary { border-bottom: 1px solid var(--border); }
+.faq-item p {
+  margin: 0;
+  padding: 14px 20px 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .about-grid-secondary { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 720px) {
   .about-section { padding: 40px 0; }
   .about-title { font-size: 23px; }
   .about-grid { grid-template-columns: 1fr; }
+  .about-grid-secondary { grid-template-columns: 1fr; }
 }

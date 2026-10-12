@@ -298,94 +298,95 @@ export default function ProductList() {
           </div>
 
           <p className="about-note">
-            Every product is clearly labelled, so you always know what you are buying and from where.
-          </p>
-          <p className="about-note">
-            Browse by category — Fashion, Electronics, Home &amp; Living, Beauty, Footwear,
-            Accessories or Kids — or use the Shop Now button above to see everything in one
-            place. New arrivals, festive offers and handpicked partner deals are added
-            regularly, so it's worth checking back often.
+            Every product is clearly labelled, so you always know what you are buying and from
+            where — and every price is shown upfront, with online shopping here never involving
+            any guesswork.
           </p>
 
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Simple, honest online shopping</h3>
-          <p className="about-note">
-            DigitalBazaar keeps online shopping simple: every price is shown upfront, every listing
-            says clearly whether it's sold by us or by a partner, and new arrivals are added every
-            week. Whether you're after a curated find at an honest price or a handpicked deal from
-            a trusted partner, you can browse, compare and buy without any guesswork.
-          </p>
+          <ul className="about-category-chips">
+            {[
+              ["Fashion", "fashion"],
+              ["Electronics", "electronics"],
+              ["Home & Living", "home-living"],
+              ["Beauty", "beauty"],
+              ["Footwear", "footwear"],
+              ["Accessories", "accessories"],
+              ["Kids", "kids"],
+            ].map(([label, slug]) => (
+              <li key={slug}>
+                <Link to={`/category/${slug}`}>{label}</Link>
+              </li>
+            ))}
+          </ul>
 
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Frequently asked questions</h3>
-          <p className="about-note">
-            <strong>Is DigitalBazaar safe to shop from?</strong> Yes — payments are handled
-            securely, and every listing states clearly whether it ships from us or from a
-            partner site.
-          </p>
-          <p className="about-note">
-            <strong>What payment methods are accepted?</strong> Products sold directly by us can
-            be paid for using UPI or Cash on Delivery. Partner deals are completed on the
-            partner's own checkout.
-          </p>
-          <p className="about-note">
-            <strong>How do I contact DigitalBazaar?</strong> Visit the <Link to="/contact">Contact</Link> page
-            for email, phone and a contact form — we usually reply within a day.
-          </p>
+          <div className="about-grid-secondary">
+            <article className="about-card">
+              <h3>How ordering works</h3>
+              <p>
+                Pick a category or scroll the homepage, open any product for full details and
+                photos, then tap Buy Now. "Sold by us" items checkout directly on DigitalBazaar
+                with UPI or Cash on Delivery; partner items complete on that partner's own site.
+              </p>
+            </article>
+            <article className="about-card">
+              <h3>Delivery and returns</h3>
+              <p>
+                Orders sold and shipped by us are usually dispatched within 1-2 business days,
+                with timelines shown at checkout. If something arrives damaged, reach out via{" "}
+                <Link to="/contact">Contact</Link> and we'll sort out a replacement or refund.
+                Partner deals follow that partner's own delivery and return policy.
+              </p>
+            </article>
+            <article className="about-card">
+              <h3>Categories at a glance</h3>
+              <p>
+                Fashion, Electronics and Home &amp; Living cover everyday essentials, while
+                Beauty, Footwear, Accessories and Kids round out the rest — new arrivals are
+                added across every category every week.
+              </p>
+            </article>
+            <article className="about-card">
+              <h3>Payments and security</h3>
+              <p>
+                Checkout uses secure payment handling, and DigitalBazaar never asks for your
+                card or UPI PIN outside the actual payment screen. Pay by UPI or Cash on
+                Delivery for direct orders; partner orders use that partner's own secure checkout.
+              </p>
+            </article>
+            <article className="about-card">
+              <h3>Trust and support</h3>
+              <p>
+                Every listing states plainly whether it's sold by DigitalBazaar or by a partner,
+                so there's never any confusion about who ships it or who to contact. Prices
+                already include any discount shown, with the original price struck through.
+              </p>
+            </article>
+          </div>
 
-          <h3 className="about-note" style={{ fontWeight: 600 }}>How ordering works</h3>
-          <p className="about-note">
-            Browsing is simple: pick a category or scroll the homepage, open any product for
-            full details and photos, then tap Buy Now. Items marked "Sold by us" are checked
-            out on DigitalBazaar directly, where UPI and Cash on Delivery are both accepted.
-            Items marked with a partner name open on that partner's own site to complete the
-            purchase, and we may earn a small commission at no extra cost to you.
-          </p>
-
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Delivery and returns</h3>
-          <p className="about-note">
-            Orders sold and shipped directly by us are usually dispatched within 1-2 business
-            days, with delivery timelines shown at checkout before you pay. If something
-            arrives damaged or isn't as described, reach out through the <Link to="/contact">Contact</Link> page
-            within a reasonable window and we'll help sort out a replacement or refund. Partner
-            deals follow that partner's own delivery and return policy, shown on their
-            checkout page.
-          </p>
-
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Categories at a glance</h3>
-          <p className="about-note">
-            Fashion covers everyday clothing and casual wear for men and women. Electronics
-            includes gadgets and mobile accessories picked for genuine usefulness rather than
-            just low price. Home and Living has kitchen, storage and other items that make
-            daily routines a little easier. Beauty focuses on everyday personal care products
-            from sellers we trust. Footwear spans casual shoes and sandals for men, women and
-            kids. Accessories covers bags, watches, belts and the small things that finish an
-            outfit. Kids has clothing and everyday products sized for children.
-          </p>
-
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Payments and security</h3>
-          <p className="about-note">
-            Checkout uses secure payment handling, and DigitalBazaar never asks for your card
-            or UPI PIN outside the actual payment screen. Orders sold directly by us can be
-            paid by UPI or settled as Cash on Delivery, so you're never forced into a single
-            payment method. Partner orders are paid on that partner's own secure checkout,
-            which is covered by their own payment protections.
-          </p>
-
-          <h3 className="about-note" style={{ fontWeight: 600 }}>New arrivals every week</h3>
-          <p className="about-note">
-            Fresh products are added regularly across every category, alongside festive offers
-            and handpicked partner deals when they're genuinely worth it. It's worth checking
-            back often, since what's trending can change week to week and good deals don't
-            always stay listed for long.
-          </p>
-
-          <h3 className="about-note" style={{ fontWeight: 600 }}>Trust and support</h3>
-          <p className="about-note">
-            Every listing states plainly whether it's sold by DigitalBazaar or by a partner, so
-            there's never any confusion about who ships the order or who to contact afterward.
-            Prices shown already include any discount, with the original price struck through
-            where one applies. If you have a question before buying, the <Link to="/contact">Contact</Link> page
-            reaches us by email, phone or a short form, and we usually reply within a day.
-          </p>
+          <div className="about-faq">
+            <h3 className="about-faq-title">Frequently asked questions</h3>
+            <details className="faq-item">
+              <summary>Is DigitalBazaar safe to shop from?</summary>
+              <p>
+                Yes — payments are handled securely, and every listing states clearly whether
+                it ships from us or from a partner site.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>What payment methods are accepted?</summary>
+              <p>
+                Products sold directly by us can be paid for using UPI or Cash on Delivery.
+                Partner deals are completed on the partner's own checkout.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>How do I contact DigitalBazaar?</summary>
+              <p>
+                Visit the <Link to="/contact">Contact</Link> page for email, phone and a contact
+                form — we usually reply within a day.
+              </p>
+            </details>
+          </div>
         </div>
       </section>
 
