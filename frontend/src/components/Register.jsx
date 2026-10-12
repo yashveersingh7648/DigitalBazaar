@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+
+// Google ki script ab sirf Login/Register page par load hoti hai (pehle har page par hoti thi)
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import SEO from "./SEO";
@@ -32,6 +35,7 @@ export default function Register() {
       </p>
 
       <div style={{ margin: "20px 0" }}>
+        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <GoogleLogin
           onSuccess={async (cred) => {
             try {
@@ -44,6 +48,7 @@ export default function Register() {
           onError={() => setError("Google signup failed")}
           width="320"
         />
+        </GoogleOAuthProvider>
       </div>
       <div className="divider-text">or continue with email</div>
 

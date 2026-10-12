@@ -54,7 +54,7 @@ export default function CategoryPage() {
         <div className="product-grid">
           {products.map((p, i) => {
             const price = p.type === "affiliate" ? p.displayPrice : p.sellingPrice;
-            const img = resolveImageUrl(p.image);
+            const img = resolveImageUrl(p.image, 480);
             return (
               <Reveal key={p._id} delay={(i % 4) * 60} className="product-card">
                 <Link to={`/product/${p.slug}`} className="img-wrap" style={{ display: "block" }}>

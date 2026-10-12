@@ -37,7 +37,7 @@ export default function Header() {
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
       <div className="container">
         <Link to="/" className="brand" onClick={closeMenu}>
-          <img src="/logo.png" alt="Bazaar logo" />
+          <img src="/logo-96.png" alt="DigitalBazaar logo" width="34" height="34" />
           {/* Baz<span>aar</span> */}
           Digital<span>Bazaar</span>
 

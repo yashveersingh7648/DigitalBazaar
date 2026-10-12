@@ -215,7 +215,7 @@ export default function ProductDetail() {
           <div className="product-grid">
             {related.map((p, i) => {
               const rPrice = p.type === "affiliate" ? p.displayPrice : p.sellingPrice;
-              const rImg = resolveImageUrl(p.image);
+              const rImg = resolveImageUrl(p.image, 480);
               return (
                 <Reveal key={p._id} delay={(i % 4) * 60} className="product-card">
                   <Link to={`/product/${p.slug}`} className="img-wrap" style={{ display: "block" }}>

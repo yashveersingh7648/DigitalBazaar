@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
@@ -31,12 +30,10 @@ const Login = lazy(() => import("./components/Login"));
 const Register = lazy(() => import("./components/Register"));
 const NotFound = lazy(() => import("./components/NotFound"));
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 export default function App() {
   return (
     <HelmetProvider>
-      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <AuthProvider>
           <CartProvider>
             <BrowserRouter>
@@ -110,7 +107,6 @@ export default function App() {
             </BrowserRouter>
           </CartProvider>
         </AuthProvider>
-      </GoogleOAuthProvider>
     </HelmetProvider>
   );
 }

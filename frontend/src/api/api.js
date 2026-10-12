@@ -19,16 +19,16 @@ export const SERVER_ORIGIN = API_URL.replace(/\/api\/?$/, "");
 
 // Product.image me kabhi full URL (http...) hoti hai (jaise purani entries), kabhi hamare
 // apne /uploads/xyz.jpg wale relative path — dono cases ko sahi <img src> me convert karta hai
-export const resolveImageUrl = (image) => {
+export const resolveImageUrl = (image, width) => {
   if (!image) return "";
   if (!/^https?:\/\//i.test(image)) {
     return `${SERVER_ORIGIN}${image.startsWith("/") ? "" : "/"}${image}`;
   }
-  // Cloudinary URLs ke liye auto-format + auto-quality transformation inject karte hain
-  // (jaise .../upload/f_auto,q_auto/...) — isse browser ko sabse chhoti/tez format (WebP/AVIF)
-  // milti hai bina koi manual resizing kiye, page load kaafi fast ho jaata hai.
+  // Cloudinary: auto format + auto quality, and (optionally) a max width so small cards
+  // do not download the full-size original (e.g. width=480 for product-card thumbnails).
   if (image.includes("res.cloudinary.com") && image.includes("/upload/") && !image.includes("/upload/f_auto")) {
-    return image.replace("/upload/", "/upload/f_auto,q_auto/");
+    const transform = `f_auto,q_auto${width ? `,w_${width},c_limit` : ""}`;
+    return image.replace("/upload/", `/upload/${transform}/`);
   }
   return image;
 };

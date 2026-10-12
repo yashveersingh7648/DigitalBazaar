@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand">
-              <img src="/logo.png" alt="Bazaar logo" />
+              <img src="/logo-96.png" alt="DigitalBazaar logo" width="34" height="34" />
               <span>Digital
 Bazaar</span>
             </div>

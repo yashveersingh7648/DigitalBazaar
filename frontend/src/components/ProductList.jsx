@@ -77,7 +77,7 @@ export default function ProductList() {
     const hasDiscount = p.mrp && price && p.mrp > price;
     const discountPct = hasDiscount ? Math.round(((p.mrp - price) / p.mrp) * 100) : 0;
     const isWishlisted = wishlist.has(p._id);
-    const imgSrc = resolveImageUrl(p.image);
+    const imgSrc = resolveImageUrl(p.image, 480);
     const gallery = (p.images && p.images.length > 0 ? p.images : [p.image]).filter(Boolean).map(resolveImageUrl);
 
     return (
@@ -207,7 +207,7 @@ export default function ProductList() {
               <div className="hero-showcase" aria-hidden="true">
                 <BagIllustration />
                 {products.slice(0, 3).map((p, i) => {
-                  const src = resolveImageUrl(p.image);
+                  const src = resolveImageUrl(p.image, 360);
                   const price = p.type === "affiliate" ? p.displayPrice : p.sellingPrice;
                   if (!src) return null;
                   return (
