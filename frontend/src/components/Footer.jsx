@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
+import ShareButtons from "./ShareButtons";
 
 // TODO: Instagram/Facebook/YouTube handles apne asli profile links se replace kar dena
 const SOCIAL_LINKS = [
@@ -32,6 +33,7 @@ Bazaar</span>
                 </a>
               ))}
             </div>
+            <ShareButtons />
           </div>
           <div>
             <h4>Explore</h4>

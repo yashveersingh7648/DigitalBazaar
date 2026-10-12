@@ -114,7 +114,14 @@ ${CATEGORIES.map((c) => `          <li><a href="/category/${c.slug}">${esc(c.lab
         </ul>
         ${active.length ? `<h2>Latest products</h2>\n        ${productList(active.slice(0, 12))}` : ""}
         <h2>Why shop at ${BRAND}?</h2>
-        <p>Our finds are chosen with care, and our prices are honest and clearly shown. Products marked "Sold by us" can be paid by UPI or Cash on Delivery. Products marked with a partner name open on that partner's own site, where you complete the purchase; we may earn a small commission at no extra cost to you.</p>`),
+        <p>Our finds are chosen with care, and our prices are honest and clearly shown. Products marked "Sold by us" can be paid by UPI or Cash on Delivery. Products marked with a partner name open on that partner's own site, where you complete the purchase; we may earn a small commission at no extra cost to you.</p>
+        <h3>Simple, honest online shopping</h3>
+        <p>${BRAND} keeps online shopping simple: every price is shown upfront, every listing says clearly whether it's sold by us or by a partner, and new arrivals are added every week. Whether you're after a curated find at an honest price or a handpicked deal from a trusted partner, you can browse, compare and buy without any guesswork.</p>
+        <h3>Frequently asked questions</h3>
+        <p><strong>Is ${BRAND} safe to shop from?</strong> Yes — payments are handled securely, and every listing states clearly whether it ships from us or from a partner site.</p>
+        <p><strong>What payment methods are accepted?</strong> Products sold directly by us can be paid for using UPI or Cash on Delivery. Partner deals are completed on the partner's own checkout.</p>
+        <p><strong>How do I contact ${BRAND}?</strong> Visit the <a href="/contact">Contact</a> page for email, phone and a contact form — we usually reply within a day.</p>
+        <p>Share ${BRAND}: <a href="https://wa.me/?text=${encodeURIComponent(SITE_URL)}">WhatsApp</a>, <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}">Facebook</a>, <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(SITE_URL)}">X / Twitter</a>.</p>`),
   });
 
   for (const c of CATEGORIES) {

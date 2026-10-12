@@ -306,6 +306,30 @@ export default function ProductList() {
             place. New arrivals, festive offers and handpicked partner deals are added
             regularly, so it's worth checking back often.
           </p>
+
+          <h3 className="about-note" style={{ fontWeight: 600 }}>Simple, honest online shopping</h3>
+          <p className="about-note">
+            DigitalBazaar keeps online shopping simple: every price is shown upfront, every listing
+            says clearly whether it's sold by us or by a partner, and new arrivals are added every
+            week. Whether you're after a curated find at an honest price or a handpicked deal from
+            a trusted partner, you can browse, compare and buy without any guesswork.
+          </p>
+
+          <h3 className="about-note" style={{ fontWeight: 600 }}>Frequently asked questions</h3>
+          <p className="about-note">
+            <strong>Is DigitalBazaar safe to shop from?</strong> Yes — payments are handled
+            securely, and every listing states clearly whether it ships from us or from a
+            partner site.
+          </p>
+          <p className="about-note">
+            <strong>What payment methods are accepted?</strong> Products sold directly by us can
+            be paid for using UPI or Cash on Delivery. Partner deals are completed on the
+            partner's own checkout.
+          </p>
+          <p className="about-note">
+            <strong>How do I contact DigitalBazaar?</strong> Visit the <Link to="/contact">Contact</Link> page
+            for email, phone and a contact form — we usually reply within a day.
+          </p>
         </div>
       </section>
 
