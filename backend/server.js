@@ -73,8 +73,7 @@ app.get("/", (req, res) => res.send("Reseller + Affiliate Platform API running")
 
 const PORT = process.env.PORT || 5000;
 
-// Purane products jinke paas slug nahi hai (feature launch se pehle create hue), unke liye
-// ek baar slug backfill kar deta hai — taaki sab products /product/:slug se turant accessible ho jaayein
+
 const backfillMissingSlugs = async () => {
   const missing = await Product.find({ $or: [{ slug: { $exists: false } }, { slug: "" }, { slug: null }] });
   for (const p of missing) {
