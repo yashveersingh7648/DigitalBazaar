@@ -1,6 +1,15 @@
-# Render (Netlify-style) rewrite rules for the static frontend site.
-# Status 200 = rewrite/proxy (URL stays on digitalbazaar.onrender.com), not a redirect —
-# so Google always sees /sitemap.xml and /robots.txt on THIS domain, but the actual content
-# comes live from the backend, which includes every active product + category automatically.
+# NOTE (Render): Render's documented way to configure redirects/rewrites for a Static Site is
+# the Dashboard (Static Site -> Redirects/Rewrites tab), NOT a _redirects file in the repo —
+# unlike Netlify/Cloudflare Pages. If the rules below aren't taking effect live, add the same
+# 3 rules there (Source / Destination / Action), in this order. This file is kept so the intent
+# is documented in version control and in case Render's static-site runtime does pick it up.
+#
+# 1) Canonicalize /index.html -> / (avoids duplicate-content: same page reachable at 2 URLs)
+#    Source: /index.html   Destination: /   Action: Redirect
+/index.html   /   301
+
+# 2) Proxy SEO files so Google always sees them on this domain, content comes live from backend
+#    Source: /sitemap.xml  Destination: https://digitalbazaar-backend-1qdt.onrender.com/sitemap.xml  Action: Rewrite
+#    Source: /robots.txt   Destination: https://digitalbazaar-backend-1qdt.onrender.com/robots.txt   Action: Rewrite
 /sitemap.xml  https://digitalbazaar-backend-1qdt.onrender.com/sitemap.xml  200
 /robots.txt   https://digitalbazaar-backend-1qdt.onrender.com/robots.txt   200
